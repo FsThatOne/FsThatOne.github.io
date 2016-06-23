@@ -1,0 +1,581 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,cocoaPods,git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="如何创建私有cocoaPods库:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何创建私有cocoaPods库">
+<meta property="og:url" content="http://FsThatOne.github.io/2016/03/08/如何创建私有cocoaPods库/index.html">
+<meta property="og:site_name" content="ThatOne">
+<meta property="og:description" content="如何创建私有cocoaPods库:">
+<meta property="og:updated_time" content="2016-06-19T07:35:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何创建私有cocoaPods库">
+<meta name="twitter:description" content="如何创建私有cocoaPods库:">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://FsThatOne.github.io/2016/03/08/如何创建私有cocoaPods库/"/>
+
+  <title> 如何创建私有cocoaPods库 | ThatOne </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ThatOne</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding Change the World.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何创建私有cocoaPods库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-08T17:55:09+08:00" content="2016-03-08">
+              2016-03-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>   <strong> 如何创建私有cocoaPods库:</strong><br><a id="more"></a></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="创建一个私有的Spec-Repo"><a href="#创建一个私有的Spec-Repo" class="headerlink" title="创建一个私有的Spec Repo"></a>创建一个私有的Spec Repo</h2><ol>
+<li><p>何为Spec Repo?<br>1.拿cocoaPods公共库来说,他是所有的Pods的一个索引，就是一个容器，所有公开的Pods都在这个里面，他实际是一个Git仓库remote端在GitHub上，但是当你使用了Cocoapods后他会被clone到本地的<code>~/.cocoapods/repos</code>目录下，可以进入到这个目录看到<strong><em>master</em></strong>文件夹就是这个官方的Spec Repo了。这个master目录的结构是这个样子的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── Specs</span><br><span class="line">    └── [SPEC_NAME]</span><br><span class="line">        └── [VERSION]</span><br><span class="line">            └── [SPEC_NAME].podspec</span><br></pre></td></tr></table></figure>
+<p>2.我们平时执行pod命令行指令时,如果后边加上<code>--no-repo-update</code>就会不更新本地索引库直接进行pod的更新,这样速度会快些,因为我们不更新Spec Repo,即不需要把所有公开的Pods都更新一遍,这样虽然能提升速度,但不能跟进Pods的最新版本.<br>3.我们需要创建一个私有的SpecRepo,不能放在公开的Pods里供所有人使用,因此我们需要创建一个类似于master的私有Spec Repo，这里我们没有必要把现有的公开Pods都copy一份。所以重新创建一个Spec仓库(公司现在已经有自己的Spec库)。</p>
+</li>
+<li><p>如何创建?<br>1.上面说了他只是一个Git仓库,因此我们需要自己搭建一个Git仓库,然后执行下边的命令:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">命令行格式:</span><br><span class="line">#pod repo add [Private Repo Name] [Spec Repo URL]</span><br><span class="line">例如:</span><br><span class="line">$ pod repo add TestSpecRepo https://github.com/FsThatOne/TestSpecRepo.git</span><br></pre></td></tr></table></figure>
+<p>2.此时如果成功的话进入到<code>~/.cocoapods/repos</code>目录下就可以看到TestSpecRepo这个目录了。至此第一步创建私有Spec Repo完成。</p>
+</li>
+</ol>
+<hr>
+<h2 id="制作-CocoaPods-依赖库"><a href="#制作-CocoaPods-依赖库" class="headerlink" title="制作 CocoaPods 依赖库"></a>制作 CocoaPods 依赖库</h2><ol>
+<li><p>每个 Pods 依赖库必须有且仅有一个名称和依赖库名保持一致，后缀名为<code>.podspec</code>的描述文件。这里我们依赖库的描述文件名称应该为 <code>MyTestPods.podspec</code>。<br> 1.创建这个文件有两种途径:<br>   1.复制现有的podspec,修改对应的参数<br>   2.命令行创建:</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod spec create MyTestPods</span><br></pre></td></tr></table></figure>
+<p> 2.创建出 <code>MyTestPods.podspec</code> 文件后，我们打开可以发现，该文件是 ruby 文件，里面有很多的内容，但是大多数都是我们不需要的，所以我们只需要根据项目的情况保留关键的一些内容就行：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line"></span><br><span class="line">  s.name         = &quot;MyTestPods&quot;</span><br><span class="line">  s.version      = &quot;0.0.1&quot;</span><br><span class="line">  s.summary      = &quot;A description of MyTestPods.&quot;</span><br><span class="line"></span><br><span class="line">  s.description  = &lt;&lt;-DESC</span><br><span class="line">                   A longer description of MyTestPods in Markdown format.</span><br><span class="line">                   DESC</span><br><span class="line"></span><br><span class="line">  s.homepage  = &quot;https://github.com/FsThatOne/MyTestPods&quot;</span><br><span class="line"></span><br><span class="line">  s.license  = &quot;MIT&quot;</span><br><span class="line"></span><br><span class="line">  s.author  = &#123; &quot;王正一&quot; =&gt; &quot;fsymbio@icloud.com&quot; &#125;</span><br><span class="line"></span><br><span class="line">  s.source_files  = &quot;MyTestPods/*.swift&quot;</span><br><span class="line"></span><br><span class="line">  s.framework  = &quot;UIKit&quot;</span><br><span class="line"></span><br><span class="line">  s.requires_arc = true</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.第二步,<strong><em>将我们从项目抽取出来的可复用框架放到MyTestPods中</em></strong>,然后我们需要对刚刚加的pod进行验证,在实际操作中,这一步可能遇到的问题最多,我会针对我遇到的情况日后慢慢作出补充.执行命令行:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod lib lint</span><br></pre></td></tr></table></figure></p>
+<p>  成功时会显示以下输出:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-&gt; MyTestPods (0.0.1)</span><br><span class="line"></span><br><span class="line">MyTestPods passed validation.</span><br></pre></td></tr></table></figure></p>
+<p>3.验证成功之后,我们只需要push到远程库,打上tag(这里的tag要与.podspec文件中的s.version一致),至此,我们的CocoaPods依赖库就创建成功了.</p>
+<hr>
+<h2 id="添加我们的-Podspec-到我们的-repo"><a href="#添加我们的-Podspec-到我们的-repo" class="headerlink" title="添加我们的 Podspec 到我们的 repo"></a>添加我们的 Podspec 到我们的 repo</h2><p>1.执行命令行:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod repo push TestSpecRepo MyTestPods.podspec</span><br></pre></td></tr></table></figure></p>
+<p>  完成后可以看到效果:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Validating spec</span><br><span class="line"> -&gt; MyTestPods (0.0.1)</span><br><span class="line"></span><br><span class="line">Updating the `MyTestPods&apos; repo</span><br><span class="line"></span><br><span class="line">Already up-to-date.</span><br><span class="line"></span><br><span class="line">Adding the spec to the `MyTestPods&apos; repo</span><br><span class="line"></span><br><span class="line"> - [Add] MyTestPods (0.0.1)</span><br><span class="line"></span><br><span class="line">Pushing the `TestSpecRepo&apos; repo</span><br><span class="line"></span><br><span class="line">To https://github.com/FsThatOne/TestSpecRepo.git</span><br><span class="line">   9f32092..8d0ced5  master -&gt; master</span><br></pre></td></tr></table></figure></p>
+<p>2.之后我们再进入~/.cocoapods/repos/TestSpecRepo,就可以看到我们创建的 Spec Repo 了.</p>
+<hr>
+<h2 id="测试私有pod"><a href="#测试私有pod" class="headerlink" title="测试私有pod."></a>测试私有pod.</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pod search MyTestPods</span><br><span class="line"></span><br><span class="line">-&gt; MyTestPods (0.0.1)</span><br><span class="line">   A description of MyTestPods.</span><br><span class="line">   pod &apos;MyTestPods&apos;, &apos;~&gt; 0.0.1&apos;</span><br><span class="line">   - Homepage: https://github.com/FsThatOne/MyTestPods</span><br><span class="line">   - Source:   https://github.com/FsThatOne/MyTestPods.git</span><br><span class="line">   - Versions: 0.0.1 [TestSpecRepo repo]</span><br></pre></td></tr></table></figure>
+<p>接下来就是<code>pod install</code>了,如果在安装的时候显示没有找到:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unable to find a specification for `MyTestPods`</span><br></pre></td></tr></table></figure></p>
+<p>就尝试在<code>pod file</code>中添加依赖库时指定url,或者在该文件中指定源:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#官方Cocoapods的源</span><br><span class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</span><br><span class="line">#本地私有源</span><br><span class="line">source &apos;https://github.com/FsTHatOne/TestSpecRepo.git&apos;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客:"></a>参考博客:</h2><p><a href="http://www.liuchungui.com/blog/2015/10/19/cocoapodschuang-jian-si-you-pods/" target="_blank" rel="external">CocoaPods创建私有Pods</a></p>
+<p><a href="http://www.jianshu.com/p/ddc2490bff9f" target="_blank" rel="external">如何创建私有 CocoaPods 仓库</a></p>
+<p><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="external">使用Cocoapods创建私有podspec</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/cocoaPods/" rel="tag">#cocoaPods</a>
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/12/应用偏好设置/" rel="prev" title="Settings - iOS 应用偏好设置.">
+                Settings - iOS 应用偏好设置. <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="FsThatOne" />
+          <p class="site-author-name" itemprop="name">FsThatOne</p>
+          <p class="site-description motion-element" itemprop="description">Kings have long arms.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个私有的Spec-Repo"><span class="nav-number">1.</span> <span class="nav-text">创建一个私有的Spec Repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作-CocoaPods-依赖库"><span class="nav-number">2.</span> <span class="nav-text">制作 CocoaPods 依赖库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加我们的-Podspec-到我们的-repo"><span class="nav-number">3.</span> <span class="nav-text">添加我们的 Podspec 到我们的 repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试私有pod"><span class="nav-number">4.</span> <span class="nav-text">测试私有pod.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考博客"><span class="nav-number">5.</span> <span class="nav-text">参考博客:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FsThatOne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

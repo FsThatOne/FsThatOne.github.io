@@ -1,0 +1,581 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift3-版本改动(翻译&解读)">
+<meta property="og:url" content="http://FsThatOne.github.io/2016/05/23/Swift3-版本改动(翻译&解读)/index.html">
+<meta property="og:site_name" content="ThatOne">
+<meta property="og:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
+<meta property="og:updated_time" content="2016-06-23T12:20:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift3-版本改动(翻译&解读)">
+<meta name="twitter:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://FsThatOne.github.io/2016/05/23/Swift3-版本改动(翻译&解读)/"/>
+
+  <title> Swift3-版本改动(翻译&解读) | ThatOne </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ThatOne</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding Change the World.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift3-版本改动(翻译&解读)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-23T15:46:21+08:00" content="2016-05-23">
+              2016-05-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> 学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.</strong><br><a id="more"></a></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels"><a href="#SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels" class="headerlink" title="SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)"></a>SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)</h2><h4 id="Before"><a href="#Before" class="headerlink" title="Before"></a><strong><em>Before</em></strong></h4><p>之前(swift2.1之前)我们在定义方法名的时候,如果遇到了关键字比如<code>in</code>,就需要加上单引号来避免混淆,因此有很多开发者选择了其他非关键字的单词作为参数名.</p>
+<h4 id="After"><a href="#After" class="headerlink" title="After"></a><strong><em>After</em></strong></h4><p>由于参数名在Swift方法中扮演者至关重要的作用,要做到简单易懂,现在我们在定义function时,可以使用类似<code>in</code>, <code>repeat</code>,和<code>defer</code>这种关键字:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func touchesMatching(phase: NSTouchPhase, in view: NSView?) -&gt; Set&lt;NSTouch&gt;</span><br></pre></td></tr></table></figure></p>
+<p>Swift3.0取消了<strong><em>几乎所有</em></strong>关键字做参数名的限制,除了<code>inout</code>,<code>let</code>,<code>var</code>,这三个如果必须要用到的话,还是需要像以前一样加单引号:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func addParameter(name: String, `inout`: Bool)</span><br></pre></td></tr></table></figure></p>
+<h2 id="SE-0002-移除科里化-Removing-currying-func-declaration-syntax"><a href="#SE-0002-移除科里化-Removing-currying-func-declaration-syntax" class="headerlink" title="SE-0002:移除科里化(Removing currying func declaration syntax)"></a>SE-0002:移除科里化(Removing currying func declaration syntax)</h2><h4 id="Before-1"><a href="#Before-1" class="headerlink" title="Before"></a><strong><em>Before</em></strong></h4><p>在之前的版本,我们可以这样写一个方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func curried(x: Int)(y: String) -&gt; Float &#123;</span><br><span class="line">    return Float(x) + Float(y)!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后可以给它传递一个函数,使之变成一个可以接受一个参数的另外一个方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let plusFive = curried(5)</span><br><span class="line">调用:</span><br><span class="line">plusFive(7)     //结果12.0</span><br></pre></td></tr></table></figure></p>
+<h4 id="After-1"><a href="#After-1" class="headerlink" title="After"></a><strong><em>After</em></strong></h4><p>在Swift3.0中,不再有科里化的专属表示方式,而是用一个返回值是另一个函数的方法表示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func curried(x: Int) -&gt; (Int) -&gt; Float &#123;</span><br><span class="line">    return &#123; (y: Int) -&gt; Float in</span><br><span class="line">        return Float(x) + Float(y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>值得注意的是:在<code>Swift3.0</code>中,我们需要强调的是函数式编程思想,即:<strong><em>函数是一等公民</em></strong>,换种说法就是函数可以被看作是一个值来传递,建议看看喵神翻译的<code>Functional Swift-函数式Swift</code>.</p>
+<h2 id="SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters"><a href="#SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters" class="headerlink" title="SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)"></a>SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)</h2><h4 id="Before-2"><a href="#Before-2" class="headerlink" title="Before"></a><strong><em>Before</em></strong></h4><p>我们在方法中使用传入的参数时,默认是不能修改的,除非在参数名前加入限定词<code>var</code>或<code>inout</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func foo(i: Int) &#123;</span><br><span class="line">  i += 1 // 错误</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func foo(var i: Int) &#123;</span><br><span class="line">  i += 1 // OK</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func foo(inout i: Int) &#123;</span><br><span class="line">  i += 1 // OK</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里需要科普一下,var和inout虽然都可以改变传入参数的值,它们的区别在于,var虽然可以修改参数,但是修改的相当于传入参数的一个copy,并不会影响传入的参数本身(这里可以理解为浅复制),inout则可以修改,可以理解为传入的是一个地址:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func doSomethingWithVar(var i: Int) &#123;</span><br><span class="line">  i = 2 // 不会影响传入参数的原值,但是可以在方法生命周期内任意修改</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func doSomethingWithInout(inout i: Int) &#123;</span><br><span class="line">  i = 2 // 会直接影响传入参数的原值</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var x = 1</span><br><span class="line">print(x) // 1</span><br><span class="line"></span><br><span class="line">doSomethingWithVar(x)</span><br><span class="line">print(x) // 1</span><br><span class="line"></span><br><span class="line">doSomethingWithInout(&amp;x)</span><br><span class="line">print(x) // 2</span><br></pre></td></tr></table></figure></p>
+<h4 id="After-2"><a href="#After-2" class="headerlink" title="After"></a><strong><em>After</em></strong></h4><p>3.0中移除了var这个限制词,因为根本没有必要这样做,如果需要改变一个值,完全可以创建一个变量等于传入的值,然后便可以对其进行任意的修改:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func foo(i: Int) &#123;</span><br><span class="line">  var i = i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="SE-0004-移除-和–运算符-Remove-the-and-–-operators"><a href="#SE-0004-移除-和–运算符-Remove-the-and-–-operators" class="headerlink" title="SE-0004:移除++和–运算符(Remove the ++ and – operators)"></a>SE-0004:移除++和–运算符(Remove the ++ and – operators)</h2><h4 id="Before-3"><a href="#Before-3" class="headerlink" title="Before"></a><strong><em>Before</em></strong></h4><p>之前的用法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = ++x</span><br><span class="line">let b = x++</span><br><span class="line">let c = --x</span><br><span class="line">let d = x--</span><br></pre></td></tr></table></figure>
+<p>然而,这些操作符的结果值总是被人混淆忽略,他们有着自己的优势和劣势:</p>
+<h5 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h5><ul>
+<li>简洁–他们要比<code>x += 1</code>或者<code>x.advance()</code>这种函数更加简洁,尤其是在迭代的时候.当需要有返回值时,<code>+=</code>并不能胜任,除非返回的是<code>void</code>.</li>
+<li>接地气–这种运算符和C语言及其扩展语言(C++,OC,C#,JAVA,JS等)都能很好的衔接,从其他语言转Swift的更容易接受.</li>
+</ul>
+<h5 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h5><ul>
+<li>难于理解–这种运算符增加了学习Swift的负担,尤其是在Swift是你接触的第一种编程语言的时候.</li>
+<li>并没有比<code>+=</code>简洁多少.</li>
+<li>Swift拥有足够多的像<code>for-in</code>,<code>enumerate</code>,<code>map</code>的函数,对于++这种需求并没有那么大,没有他们一样可以流畅的编写代码.</li>
+<li>Bulabulabulabula….</li>
+</ul>
+<h4 id="After-3"><a href="#After-3" class="headerlink" title="After"></a><strong><em>After</em></strong></h4><p>总之就是不再用了,但是为了兼容C++等语言,还是保留了编译能力.</p>
+<h2 id="SE-0005-将OC的接口更好的转换成Swift接口-Better-Translation-of-Objective-C-APIs-Into-Swift"><a href="#SE-0005-将OC的接口更好的转换成Swift接口-Better-Translation-of-Objective-C-APIs-Into-Swift" class="headerlink" title="SE-0005:将OC的接口更好的转换成Swift接口(Better Translation of Objective-C APIs Into Swift)"></a>SE-0005:将OC的接口更好的转换成Swift接口(Better Translation of Objective-C APIs Into Swift)</h2><p>这部分主要介绍了工程师们设计API的出发点,如果想要了解深入,可以看看WWDC16的视频,或者访问<a href="https://swift.org/documentation/api-design-guidelines/" target="_blank" rel="external">Swift API Design Guidelines</a>,不过个人不建议看,没什么鸟玩意,只是介绍了一下设计API的思路.</p>
+<h4 id="Before-amp-After"><a href="#Before-amp-After" class="headerlink" title="Before &amp; After"></a><strong><em>Before &amp; After</em></strong></h4><p>这一部分还是要日常开发中慢慢积累,举个例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 修改之前</span><br><span class="line">let content = listItemView.text.stringByTrimmingCharactersInSet(</span><br><span class="line">   NSCharacterSet.whitespaceAndNewlineCharacterSet())</span><br><span class="line">// 修改之后</span><br><span class="line">let content = listItemView.text.trimming(.whitespaceAndNewlines)</span><br></pre></td></tr></table></figure></p>
+<p>再比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+[NSNumber numberWithBool:];</span><br><span class="line">改为:</span><br><span class="line">NSNumber(bool: true)</span><br></pre></td></tr></table></figure></p>
+<p>还有,拿UIBezierPath举例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class UIBezierPath : NSObject, NSCopying, NSCoding &#123;</span><br><span class="line">  convenience init(ovalInRect: CGRect)</span><br><span class="line">  func moveToPoint(_: CGPoint)</span><br><span class="line">  func addLineToPoint(_: CGPoint)</span><br><span class="line">  func addCurveToPoint(_: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint)</span><br><span class="line">  func addQuadCurveToPoint(_: CGPoint, controlPoint: CGPoint)</span><br><span class="line">  func appendPath(_: UIBezierPath)</span><br><span class="line">  func bezierPathByReversingPath() -&gt; UIBezierPath</span><br><span class="line">  func applyTransform(_: CGAffineTransform)</span><br><span class="line">  var empty: Bool &#123; get &#125;</span><br><span class="line">  func containsPoint(_: CGPoint) -&gt; Bool</span><br><span class="line">  func fillWithBlendMode(_: CGBlendMode, alpha: CGFloat)</span><br><span class="line">  func strokeWithBlendMode(_: CGBlendMode, alpha: CGFloat)</span><br><span class="line">  func copyWithZone(_: NSZone) -&gt; AnyObject</span><br><span class="line">  func encodeWithCoder(_: NSCoder)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">改为:</span><br><span class="line"></span><br><span class="line">class UIBezierPath : NSObject, NSCopying, NSCoding &#123;</span><br><span class="line">  convenience init(ovalIn rect: CGRect)</span><br><span class="line">  func move(to point: CGPoint)</span><br><span class="line">  func addLine(to point: CGPoint)</span><br><span class="line">  func addCurve(to endPoint: CGPoint, controlPoint1 controlPoint1: CGPoint, controlPoint2 controlPoint2: CGPoint)</span><br><span class="line">  func addQuadCurve(to endPoint: CGPoint, controlPoint controlPoint: CGPoint)</span><br><span class="line">  func append(_ bezierPath: UIBezierPath)</span><br><span class="line">  func reversing() -&gt; UIBezierPath</span><br><span class="line">  func apply(_ transform: CGAffineTransform)</span><br><span class="line">  var isEmpty: Bool &#123; get &#125;</span><br><span class="line">  func contains(_ point: CGPoint) -&gt; Bool</span><br><span class="line">  func fill(_ blendMode: CGBlendMode, alpha alpha: CGFloat)</span><br><span class="line">  func stroke(_ blendMode: CGBlendMode, alpha alpha: CGFloat)</span><br><span class="line">  func copy(with zone: NSZone = nil) -&gt; AnyObject</span><br><span class="line">  func encode(with aCoder: NSCoder)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>简单地说,修改的主要思路就是,方法名里涉及到参数的基本上都转换为参数的外部参数,如果通过参数名完全可以知道这个函数是干什么的,那么方法名将会省略相关文字比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func appendString(_: NSString)</span><br><span class="line">改为:</span><br><span class="line">func append(_: NSString)</span><br></pre></td></tr></table></figure></p>
+<p>不再赘述.</p>
+<h2 id="SE-0006-将API设计思想运用到标准库-Apply-API-Guidelines-to-the-Standard-Library"><a href="#SE-0006-将API设计思想运用到标准库-Apply-API-Guidelines-to-the-Standard-Library" class="headerlink" title="SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)"></a>SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)</h2><p>这部分和SE-0005合并一起,并没有什么新东西.</p>
+<h4 id="Before-amp-After-1"><a href="#Before-amp-After-1" class="headerlink" title="Before &amp; After"></a><strong><em>Before &amp; After</em></strong></h4>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/21/MarkDown常用语法/" rel="next" title="MarkDown常用语法">
+                <i class="fa fa-chevron-left"></i> MarkDown常用语法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/06/移动数据库新选择-Realm/" rel="prev" title="移动数据库新选择-Realm">
+                移动数据库新选择-Realm <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="FsThatOne" />
+          <p class="site-author-name" itemprop="name">FsThatOne</p>
+          <p class="site-description motion-element" itemprop="description">Kings have long arms.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels"><span class="nav-number">1.</span> <span class="nav-text">SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Before"><span class="nav-number">1.0.1.</span> <span class="nav-text">Before</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#After"><span class="nav-number">1.0.2.</span> <span class="nav-text">After</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0002-移除科里化-Removing-currying-func-declaration-syntax"><span class="nav-number">2.</span> <span class="nav-text">SE-0002:移除科里化(Removing currying func declaration syntax)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Before-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">Before</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#After-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">After</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters"><span class="nav-number">3.</span> <span class="nav-text">SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Before-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">Before</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#After-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">After</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0004-移除-和–运算符-Remove-the-and-–-operators"><span class="nav-number">4.</span> <span class="nav-text">SE-0004:移除++和–运算符(Remove the ++ and – operators)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Before-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">Before</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优势"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#劣势"><span class="nav-number">4.0.1.2.</span> <span class="nav-text">劣势</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#After-3"><span class="nav-number">4.0.2.</span> <span class="nav-text">After</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0005-将OC的接口更好的转换成Swift接口-Better-Translation-of-Objective-C-APIs-Into-Swift"><span class="nav-number">5.</span> <span class="nav-text">SE-0005:将OC的接口更好的转换成Swift接口(Better Translation of Objective-C APIs Into Swift)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Before-amp-After"><span class="nav-number">5.0.1.</span> <span class="nav-text">Before & After</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0006-将API设计思想运用到标准库-Apply-API-Guidelines-to-the-Standard-Library"><span class="nav-number">6.</span> <span class="nav-text">SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Before-amp-After-1"><span class="nav-number">6.0.1.</span> <span class="nav-text">Before & After</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FsThatOne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Realm," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Realm是一个跨平台移动数据库引擎，支持iOS、OS X（Objective-C和Swift）以及Android。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动数据库新选择-Realm">
+<meta property="og:url" content="http://FsThatOne.github.io/2016/06/06/移动数据库新选择-Realm/index.html">
+<meta property="og:site_name" content="ThatOne">
+<meta property="og:description" content="Realm是一个跨平台移动数据库引擎，支持iOS、OS X（Objective-C和Swift）以及Android。">
+<meta property="og:updated_time" content="2016-06-19T07:35:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动数据库新选择-Realm">
+<meta name="twitter:description" content="Realm是一个跨平台移动数据库引擎，支持iOS、OS X（Objective-C和Swift）以及Android。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://FsThatOne.github.io/2016/06/06/移动数据库新选择-Realm/"/>
+
+  <title> 移动数据库新选择-Realm | ThatOne </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ThatOne</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding Change the World.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动数据库新选择-Realm
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-06T14:14:17+08:00" content="2016-06-06">
+              2016-06-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> Realm是一个跨平台移动数据库引擎，支持iOS、OS X（Objective-C和Swift）以及Android。</strong><br><a id="more"></a></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://realm.io/cn/" target="_blank" rel="external">Realm</a>是一个跨平台移动数据库引擎，支持iOS、OS X（Objective-C和Swift）以及Android。</p>
+<p>2014年7月发布。由YCombinator孵化的创业团队历时几年打造，是第一个专门针对移动平台设计的数据库。目标是取代SQLite。</p>
+<p>为了彻底解决性能问题，核心数据引擎C++打造，并不是建立在SQLite之上的ORM。如果对数据引擎实现想深入了解可以查看：<a href="https://realm.io/cn/news/jp-simard-realm-core-database-engine/" target="_blank" rel="external">Realm 核心数据库引擎探秘</a>。因此得到的收益就是比普通的ORM要快很多，甚至比单独无封装的SQLite还要快。</p>
+<p>因为是ORM，本身在设计时也针对移动设备（iOS、Android），所以非常简单易用，学习成本很低。</p>
+<h2 id="优劣"><a href="#优劣" class="headerlink" title="优劣"></a>优劣</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li><p>首先是realm的速度，realm拥有碾压级性能,虽然一般的手机客户端不会用到大数据的情况，但有些情况你还是会经常遇到的。比如要存全国的省市区，这个数据量就很大，而且还是关系型的。如果用coredata会灰常的慢，这个时候Realm就派上用场了。</p>
+</li>
+<li><p>其次是realm的使用，realm相对于coredata，不管是增删改查，还是数据库版本的更新，都要更加的简单，比较适合新手使用，降低了团队学习的成本。</p>
+</li>
+<li><p>这里要说一下数据库的版本更新，当我们的数据库中表的字段发生变化时，为了兼容老版本，需要对数据库进行升级。这个在coredata里是有的，但是需要操作的地方很多，既要在试图里修改，还要重新生产实例。但是realm就比较方便了，几行代码。而且如果改动特别大，可以直接创建新的库出来，比coredata要灵活。</p>
+</li>
+<li><p>最后realm发展到现在也相对比较成熟了，有团队专门去维护，热度也比较高，可以在一些功能上试用起来。</p>
+</li>
+</ul>
+<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li><p>使用Realm会增大应用大概1MB的包体积,这是相对于CoreData的短板.</p>
+</li>
+<li><p>所有的存储对象对象都要继承自RealmObject,如果项目中的数据都继承自某个已经写好的基类,那么就需要做出一些调整;当然,这个问题在Swift中就不存在,因为swift是天生的面向协议编程范式,只需要遵循一个协议就好了.</p>
+</li>
+<li><p>不能自定义getter、setter,如果自定义了getter和setter,则会对存储有影响;这个问题在Swift中同样不存在,因为Swift中使用的是didSet和willSet这种通知机制.</p>
+</li>
+<li><p>查询的结果不是数组:为了能够支持查询结果的链式查询,realm自己定义了一个集合类型,虽然可以枚举,但是并不是熟悉的数组类型,又因为realm具有延迟加载(懒加载)的特性,所以不建议在数据层把这个集合转换成数组类型.</p>
+</li>
+</ul>
+<h2 id="相关细节"><a href="#相关细节" class="headerlink" title="相关细节"></a>相关细节</h2><ul>
+<li>属性property种类<br>Realm支持以下的属性property种类： BOOL,bool, int, NSInteger, long, float, double, CGFloat, NSString, NSDate 和NSData。<br>你可以使用RLMArray<nsobject> 和RLMObject来模拟对一或对多的关系<br>Realm也支持RLMObject继承。</nsobject></li>
+<li><p>属性property特性</p>
+<ol>
+<li>请注意Realm忽略了objective-c的property attributes,像nonatomic, atomic, strong, copy, weak等等。所以，为了避免误解，我们推荐你在写入模型的时候不要使用任何的property attributes。但是，假如你设置了，这些attributes会一直生效直到RLMObject被写入realm数据库。</li>
+<li>无论RLMObject在或不在realm中，你为getter和setter自定义的名字都能正常工作。</li>
+</ol>
+</li>
+</ul>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h4 id="创建model"><a href="#创建model" class="headerlink" title="创建model"></a>创建model</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;City.h&quot;</span><br><span class="line">#import &lt;Realm/Realm.h&gt;</span><br><span class="line"></span><br><span class="line">RLM_ARRAY_TYPE(City)</span><br><span class="line"></span><br><span class="line">@interface Province : RLMObject</span><br><span class="line"></span><br><span class="line">@property  NSString *enName;</span><br><span class="line">@property  int pid;</span><br><span class="line">@property  NSString *prefixLetter;</span><br><span class="line">@property  NSString *shortName;</span><br><span class="line">@property  int sId;</span><br><span class="line">@property  int type;</span><br><span class="line">@property  RLMArray&lt;City *&gt;&lt;City&gt; *citys;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>这里是创建了一个省份对象,它有一个城市的属性,保存的都是该省份的所有城市,这是一种一对多的映射关系.<br>我们处理一对多的映射关系时,需要两个步骤:</p>
+<ol>
+<li><p>声明RLM_ARRAY_TYPE(City),这句话的意思是声明一个RLMArray<city> type. 这个声明可以放在两个地方,一个是需要关联的那个类的最上方,就像我写这样,也可以放在City的最后,也就是@end的下面.</city></p>
+</li>
+<li><p>然后添加关联属性@property RLMArray<city*><city> citys;这样声明看起来怪怪的,我们来分析一下:</city></city*></p>
+<ul>
+<li>RLMArray就是数组类型,没什么好说的;</li>
+<li><cityentity*>官方解释是属性的特别化(generic specialization)，这可以阻止在编译时使用错误对象类型的数组;</cityentity*></li>
+<li><cityentity>这个其实和RLMArray是连在一起的， 此RLMArray遵守的协议，可以让 Realm 知晓如何在运行时确定数据模型的架构。</cityentity></li>
+</ul>
+</li>
+</ol>
+<h4 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h4><p>首先我们要先造好数据:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Province* province=[[Province alloc] init];</span><br><span class="line">//赋值</span><br><span class="line">City *city = [[City alloc] init];</span><br><span class="line">[province.citys addObject:city];</span><br></pre></td></tr></table></figure></p>
+<p>然后就是把记录插入到数据库中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//获取单例</span><br><span class="line">RLMRealm *realm = [RLMRealm defaultRealm];</span><br><span class="line">//开启事物</span><br><span class="line">[realm beginWriteTransaction];</span><br><span class="line">[realm addObject:province];</span><br><span class="line">[realm commitWriteTransaction];</span><br></pre></td></tr></table></figure></p>
+<h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><p>最普通的更新数据:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[RLMRealm defaultRealm] transactionWithBlock:^&#123;</span><br><span class="line">    Province *province=[provinceArray firstObject];</span><br><span class="line">    province.shortName=@&quot;浙江&quot;;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<p>也可以给模型设置一个主键,根据主键去更新数据库,更新需要拥有一个主键—PrimaryKey:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@implementation bookBook</span><br><span class="line">+ (NSString *)primaryKey &#123;</span><br><span class="line"> return @&quot;id&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>然后通过realm的接口调用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个含有主键&quot;id&quot;的模型</span><br><span class="line">bookBook *cheeseBook = [[Book alloc] init];</span><br><span class="line">cheeseBook.title = @&quot;Cheese recipes&quot;;</span><br><span class="line">cheeseBook.price = @9000;</span><br><span class="line">cheeseBook.id = @1;</span><br><span class="line">// 更新id为1的bookBook</span><br><span class="line">[realm beginWriteTransaction];</span><br><span class="line">[realm addOrUpdateObject:cheeseBook];</span><br><span class="line">[realm commitWriteTransaction];</span><br></pre></td></tr></table></figure></p>
+<h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><p>三种方式:</p>
+<ol>
+<li><p>单条记录删除:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[realm beginWriteTransaction];</span><br><span class="line">[realm deleteObject:cheeseBook];</span><br><span class="line">[realm commitWriteTransaction];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多条记录删除:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//result是搜索的结果</span><br><span class="line">[[RLMRealm defaultRealm] transactionWithBlock:^&#123;</span><br><span class="line">        [[RLMRealm defaultRealm] deleteObjects:result];</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全部删除:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[RLMRealm defaultRealm] transactionWithBlock:^&#123;</span><br><span class="line">        [[RLMRealm defaultRealm] deleteAllObjects];</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="数据模型定制"><a href="#数据模型定制" class="headerlink" title="数据模型定制"></a>数据模型定制</h4><p>几个存在的类方法进一步指定模型信息:</p>
+<p><code>+attributesForProperty</code>:可以被重写来来提供特定属性property的属性值attrbutes例如某个属性值要添加索引。</p>
+<p><code>+defaultPropertyValues</code>可以被重写，用以为新建的对象提供默认值。</p>
+<p><code>+primaryKey</code>可以被重写来设置模型的主键。定义主键可以提高效率并且确保唯一性。</p>
+<p>  <code>ignoredProperties</code>可以被重写来防止Realm存储模型属性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面介绍了realm的基本操作，可以看到realm使用起来是非常简单的，而且他已经帮你把事务做好了。这就保证了realm在实际使用中的安全性，不会因为一些突发情况造成数据的紊乱。之后我会对他进行更深入的探讨，如果你感兴趣可以关注我。</p>
+</the>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/Realm/" rel="tag">#Realm</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/23/Swift3-版本改动(翻译&解读)/" rel="next" title="Swift3-版本改动(翻译&解读)">
+                <i class="fa fa-chevron-left"></i> Swift3-版本改动(翻译&解读)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/07/Realm爬坑心得/" rel="prev" title="Realm爬坑心得">
+                Realm爬坑心得 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="FsThatOne" />
+          <p class="site-author-name" itemprop="name">FsThatOne</p>
+          <p class="site-description motion-element" itemprop="description">Kings have long arms.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优劣"><span class="nav-number">2.</span> <span class="nav-text">优劣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">2.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#劣势"><span class="nav-number">2.2.</span> <span class="nav-text">劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关细节"><span class="nav-number">3.</span> <span class="nav-text">相关细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">4.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建model"><span class="nav-number">4.0.1.</span> <span class="nav-text">创建model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增数据"><span class="nav-number">4.0.2.</span> <span class="nav-text">新增数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新数据"><span class="nav-number">4.0.3.</span> <span class="nav-text">更新数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据"><span class="nav-number">4.0.4.</span> <span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据模型定制"><span class="nav-number">4.0.5.</span> <span class="nav-text">数据模型定制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FsThatOne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
