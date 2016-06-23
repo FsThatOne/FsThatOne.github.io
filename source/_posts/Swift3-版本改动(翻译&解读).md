@@ -197,3 +197,8 @@ func append(_: NSString)
 ```
 
 不再赘述.
+
+## SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)
+这部分和SE-0005合并一起,并没有什么新东西.
+
+#### ___Before & After___

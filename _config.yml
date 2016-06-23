@@ -7,8 +7,9 @@ title: ThatOne
 subtitle: Coding Change the World.
 description: Kings have long arms.
 author: FsThatOne
-language: zh-CN
+language: zh-Hans
 timezone: Asia/Shanghai
+avatar: /images/avatar.jpeg
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -63,7 +64,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: maupassant
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
