@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://FsThatOne.github.io/2016/05/23/Swift3-版本改动(翻译&解读)/index.html">
 <meta property="og:site_name" content="ThatOne">
 <meta property="og:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
-<meta property="og:updated_time" content="2016-06-24T03:42:43.000Z">
+<meta property="og:updated_time" content="2016-06-24T03:46:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift3-版本改动(翻译&解读)">
 <meta name="twitter:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
@@ -268,29 +268,29 @@
       
         <p><strong> 学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.</strong><br><a id="more"></a></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h2 id="SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels"><a href="#SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels" class="headerlink" title="SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)"></a>SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)</h2><font size="4"><strong><em>Before</em></strong></font>
+<h2 id="SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels"><a href="#SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels" class="headerlink" title="SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)"></a>SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
 
 <p>之前(swift2.1之前)我们在定义方法名的时候,如果遇到了关键字比如<code>in</code>,就需要加上单引号来避免混淆,因此有很多开发者选择了其他非关键字的单词作为参数名.</p>
-<font size="4"><strong><em>After</em></strong></font>
+<font size="4" ,="" color="#FF8C00"><strong><em>After</em></strong></font>
 
 <p>由于参数名在Swift方法中扮演者至关重要的作用,要做到简单易懂,现在我们在定义function时,可以使用类似<code>in</code>, <code>repeat</code>,和<code>defer</code>这种关键字:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func touchesMatching(phase: NSTouchPhase, in view: NSView?) -&gt; Set&lt;NSTouch&gt;</span><br></pre></td></tr></table></figure></p>
 <p>Swift3.0取消了<strong><em>几乎所有</em></strong>关键字做参数名的限制,除了<code>inout</code>,<code>let</code>,<code>var</code>,这三个如果必须要用到的话,还是需要像以前一样加单引号:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func addParameter(name: String, `inout`: Bool)</span><br></pre></td></tr></table></figure></p>
-<h2 id="SE-0002-移除科里化-Removing-currying-func-declaration-syntax"><a href="#SE-0002-移除科里化-Removing-currying-func-declaration-syntax" class="headerlink" title="SE-0002:移除科里化(Removing currying func declaration syntax)"></a>SE-0002:移除科里化(Removing currying func declaration syntax)</h2><font size="4"><strong><em>Before</em></strong></font>
+<h2 id="SE-0002-移除科里化-Removing-currying-func-declaration-syntax"><a href="#SE-0002-移除科里化-Removing-currying-func-declaration-syntax" class="headerlink" title="SE-0002:移除科里化(Removing currying func declaration syntax)"></a>SE-0002:移除科里化(Removing currying func declaration syntax)</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
 
 <p>在之前的版本,我们可以这样写一个方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func curried(x: Int)(y: String) -&gt; Float &#123;</span><br><span class="line">    return Float(x) + Float(y)!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>然后可以给它传递一个函数,使之变成一个可以接受一个参数的另外一个方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let plusFive = curried(5)</span><br><span class="line">调用:</span><br><span class="line">plusFive(7)     //结果12.0</span><br></pre></td></tr></table></figure></p>
-<font size="4"><strong><em>After</em></strong></font>
+<font size="4" ,="" color="#FF8C00"><strong><em>After</em></strong></font>
 
 <p>在Swift3.0中,不再有科里化的专属表示方式,而是用一个返回值是另一个函数的方法表示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func curried(x: Int) -&gt; (Int) -&gt; Float &#123;</span><br><span class="line">    return &#123; (y: Int) -&gt; Float in</span><br><span class="line">        return Float(x) + Float(y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>值得注意的是:在<code>Swift3.0</code>中,我们需要强调的是函数式编程思想,即:<strong><em>函数是一等公民</em></strong>,换种说法就是函数可以被看作是一个值来传递,建议看看喵神翻译的<code>Functional Swift-函数式Swift</code>.</p>
-<h2 id="SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters"><a href="#SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters" class="headerlink" title="SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)"></a>SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)</h2><font size="4"><strong><em>Before</em></strong></font>
+<h2 id="SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters"><a href="#SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters" class="headerlink" title="SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)"></a>SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
 
 <p>我们在方法中使用传入的参数时,默认是不能修改的,除非在参数名前加入限定词<code>var</code>或<code>inout</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func foo(i: Int) &#123;</span><br><span class="line">  i += 1 // 错误</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func foo(var i: Int) &#123;</span><br><span class="line">  i += 1 // OK</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func foo(inout i: Int) &#123;</span><br><span class="line">  i += 1 // OK</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这里需要科普一下,var和inout虽然都可以改变传入参数的值,它们的区别在于,var虽然可以修改参数,但是修改的相当于传入参数的一个copy,并不会影响传入的参数本身(这里可以理解为浅复制),inout则可以修改,可以理解为传入的是一个地址:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func doSomethingWithVar(var i: Int) &#123;</span><br><span class="line">  i = 2 // 不会影响传入参数的原值,但是可以在方法生命周期内任意修改</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func doSomethingWithInout(inout i: Int) &#123;</span><br><span class="line">  i = 2 // 会直接影响传入参数的原值</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var x = 1</span><br><span class="line">print(x) // 1</span><br><span class="line"></span><br><span class="line">doSomethingWithVar(x)</span><br><span class="line">print(x) // 1</span><br><span class="line"></span><br><span class="line">doSomethingWithInout(&amp;x)</span><br><span class="line">print(x) // 2</span><br></pre></td></tr></table></figure></p>
-<font size="4"><strong><em>After</em></strong></font>
+<font size="4" ,="" color="#FF8C00"><strong><em>After</em></strong></font>
 
 <p>3.0中移除了var这个限制词,因为根本没有必要这样做,如果需要改变一个值,完全可以创建一个变量等于传入的值,然后便可以对其进行任意的修改:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func foo(i: Int) &#123;</span><br><span class="line">  var i = i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="SE-0004-移除-和–运算符-Remove-the-and-–-operators"><a href="#SE-0004-移除-和–运算符-Remove-the-and-–-operators" class="headerlink" title="SE-0004:移除++和–运算符(Remove the ++ and – operators)"></a>SE-0004:移除++和–运算符(Remove the ++ and – operators)</h2><font size="4"><strong><em>Before</em></strong></font>
+<h2 id="SE-0004-移除-和–运算符-Remove-the-and-–-operators"><a href="#SE-0004-移除-和–运算符-Remove-the-and-–-operators" class="headerlink" title="SE-0004:移除++和–运算符(Remove the ++ and – operators)"></a>SE-0004:移除++和–运算符(Remove the ++ and – operators)</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
 
 <p>之前的用法:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = ++x</span><br><span class="line">let b = x++</span><br><span class="line">let c = --x</span><br><span class="line">let d = x--</span><br></pre></td></tr></table></figure>
@@ -309,11 +309,11 @@
 <li>Swift拥有足够多的像<code>for-in</code>,<code>enumerate</code>,<code>map</code>的函数,对于++这种需求并没有那么大,没有他们一样可以流畅的编写代码.</li>
 <li>Bulabulabulabula….</li>
 </ul>
-<font size="4"><strong><em>After</em></strong></font>
+<font size="4" ,="" color="#FF8C00"><strong><em>After</em></strong></font>
 
 <p>总之就是不再用了,但是为了兼容C++等语言,还是保留了编译能力.</p>
 <h2 id="SE-0005-将OC的接口更好的转换成Swift接口-Better-Translation-of-Objective-C-APIs-Into-Swift"><a href="#SE-0005-将OC的接口更好的转换成Swift接口-Better-Translation-of-Objective-C-APIs-Into-Swift" class="headerlink" title="SE-0005:将OC的接口更好的转换成Swift接口(Better Translation of Objective-C APIs Into Swift)"></a>SE-0005:将OC的接口更好的转换成Swift接口(Better Translation of Objective-C APIs Into Swift)</h2><p>这部分主要介绍了工程师们设计API的出发点,如果想要了解深入,可以看看WWDC16的视频,或者访问<a href="https://swift.org/documentation/api-design-guidelines/" target="_blank" rel="external">Swift API Design Guidelines</a>,不过个人不建议看,没什么鸟玩意,只是介绍了一下设计API的思路.</p>
-<font size="4"><strong><em>Before &amp; After</em></strong></font>
+<font size="4" ,="" color="#FF8C00"><strong><em>Before &amp; After</em></strong></font>
 
 <p>这一部分还是要日常开发中慢慢积累,举个例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 修改之前</span><br><span class="line">let content = listItemView.text.stringByTrimmingCharactersInSet(</span><br><span class="line">   NSCharacterSet.whitespaceAndNewlineCharacterSet())</span><br><span class="line">// 修改之后</span><br><span class="line">let content = listItemView.text.trimming(.whitespaceAndNewlines)</span><br></pre></td></tr></table></figure></p>
 <p>再比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+[NSNumber numberWithBool:];</span><br><span class="line">改为:</span><br><span class="line">NSNumber(bool: true)</span><br></pre></td></tr></table></figure></p>
@@ -321,7 +321,7 @@
 <p>简单地说,修改的主要思路就是,方法名里涉及到参数的基本上都转换为参数的外部参数,如果通过参数名完全可以知道这个函数是干什么的,那么方法名将会省略相关文字比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func appendString(_: NSString)</span><br><span class="line">改为:</span><br><span class="line">func append(_: NSString)</span><br></pre></td></tr></table></figure></p>
 <p>不再赘述.</p>
 <h2 id="SE-0006-将API设计思想运用到标准库-Apply-API-Guidelines-to-the-Standard-Library"><a href="#SE-0006-将API设计思想运用到标准库-Apply-API-Guidelines-to-the-Standard-Library" class="headerlink" title="SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)"></a>SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)</h2><p>这部分和SE-0005合并一起,并没有什么新东西.</p>
-<font size="4"><strong><em>Before &amp; After</em></strong></font>
+<font size="4" ,="" color="#FF8C00"><strong><em>Before &amp; After</em></strong></font>
 
       
     </div>
