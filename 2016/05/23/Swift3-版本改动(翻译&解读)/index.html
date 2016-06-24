@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://FsThatOne.github.io/2016/05/23/Swift3-版本改动(翻译&解读)/index.html">
 <meta property="og:site_name" content="ThatOne">
 <meta property="og:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
-<meta property="og:updated_time" content="2016-06-24T03:39:43.000Z">
+<meta property="og:updated_time" content="2016-06-24T03:42:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift3-版本改动(翻译&解读)">
 <meta name="twitter:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
@@ -295,11 +295,15 @@
 <p>之前的用法:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = ++x</span><br><span class="line">let b = x++</span><br><span class="line">let c = --x</span><br><span class="line">let d = x--</span><br></pre></td></tr></table></figure>
 <p>然而,这些操作符的结果值总是被人混淆忽略,他们有着自己的优势和劣势:</p>
-<h5 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h5><ul>
+<font size="2"><strong><em>优势</em></strong></font>
+
+<ul>
 <li>简洁–他们要比<code>x += 1</code>或者<code>x.advance()</code>这种函数更加简洁,尤其是在迭代的时候.当需要有返回值时,<code>+=</code>并不能胜任,除非返回的是<code>void</code>.</li>
 <li>接地气–这种运算符和C语言及其扩展语言(C++,OC,C#,JAVA,JS等)都能很好的衔接,从其他语言转Swift的更容易接受.</li>
 </ul>
-<h5 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h5><ul>
+<font size="2"><strong><em>劣势</em></strong></font>
+
+<ul>
 <li>难于理解–这种运算符增加了学习Swift的负担,尤其是在Swift是你接触的第一种编程语言的时候.</li>
 <li>并没有比<code>+=</code>简洁多少.</li>
 <li>Swift拥有足够多的像<code>for-in</code>,<code>enumerate</code>,<code>map</code>的函数,对于++这种需求并没有那么大,没有他们一样可以流畅的编写代码.</li>
@@ -467,7 +471,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels"><span class="nav-number">1.</span> <span class="nav-text">SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0002-移除科里化-Removing-currying-func-declaration-syntax"><span class="nav-number">2.</span> <span class="nav-text">SE-0002:移除科里化(Removing currying func declaration syntax)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters"><span class="nav-number">3.</span> <span class="nav-text">SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0004-移除-和–运算符-Remove-the-and-–-operators"><span class="nav-number">4.</span> <span class="nav-text">SE-0004:移除++和–运算符(Remove the ++ and – operators)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优势"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#劣势"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">劣势</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0005-将OC的接口更好的转换成Swift接口-Better-Translation-of-Objective-C-APIs-Into-Swift"><span class="nav-number">5.</span> <span class="nav-text">SE-0005:将OC的接口更好的转换成Swift接口(Better Translation of Objective-C APIs Into Swift)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0006-将API设计思想运用到标准库-Apply-API-Guidelines-to-the-Standard-Library"><span class="nav-number">6.</span> <span class="nav-text">SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0001-允许关键字作为参数名-Allow-most-keywords-as-argument-labels"><span class="nav-number">1.</span> <span class="nav-text">SE-0001:允许关键字作为参数名(Allow (most) keywords as argument labels)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0002-移除科里化-Removing-currying-func-declaration-syntax"><span class="nav-number">2.</span> <span class="nav-text">SE-0002:移除科里化(Removing currying func declaration syntax)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0003-从方法参数限制中去除var-Removing-var-from-Function-Parameters"><span class="nav-number">3.</span> <span class="nav-text">SE-0003:从方法参数限制中去除var(Removing var from Function Parameters)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0004-移除-和–运算符-Remove-the-and-–-operators"><span class="nav-number">4.</span> <span class="nav-text">SE-0004:移除++和–运算符(Remove the ++ and – operators)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0005-将OC的接口更好的转换成Swift接口-Better-Translation-of-Objective-C-APIs-Into-Swift"><span class="nav-number">5.</span> <span class="nav-text">SE-0005:将OC的接口更好的转换成Swift接口(Better Translation of Objective-C APIs Into Swift)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SE-0006-将API设计思想运用到标准库-Apply-API-Guidelines-to-the-Standard-Library"><span class="nav-number">6.</span> <span class="nav-text">SE-0006:将API设计思想运用到标准库(Apply API Guidelines to the Standard Library)</span></a></li></ol></div>
             
           </div>
         </section>
