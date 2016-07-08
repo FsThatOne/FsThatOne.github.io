@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://FsThatOne.github.io/2016/05/23/Swift3-版本改动(翻译&解读)/index.html">
 <meta property="og:site_name" content="ThatOne">
 <meta property="og:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
-<meta property="og:updated_time" content="2016-07-08T06:59:09.000Z">
+<meta property="og:updated_time" content="2016-07-08T07:05:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift3-版本改动(翻译&解读)">
 <meta name="twitter:description" content="学习Swift2.2到3.0的改动,主要是对已经通过的提案进行解读.">
@@ -273,7 +273,7 @@
 <p>之前(swift2.1之前)我们在定义方法名的时候,如果遇到了关键字比如<code>in</code>,就需要加上单引号来避免混淆,因此有很多开发者选择了其他非关键字的单词作为参数名.</p>
 <font size="4" ,="" color="#FF8C00"><strong><em>After</em></strong></font>
 
-<p>由于参数名在Swift方法中扮演者至关重要的作用,要做到简单易懂,现在我们在定义function时,可以使用类似<code>in</code>, <code>repeat</code>,和<code>defer</code>这种关键字:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func touchesMatching(phase: NSTouchPhase, in view: NSView?) -&gt; Set&lt;NSTouch&gt;</span><br></pre></td></tr></table></figure></p>
+<p>由于参数名在Swift方法中扮演者至关重要的作用,要做到简单易懂,现在我们在定义function时,可以使用类似<code>in</code>, <code>repeat</code>,和<code>defer</code>这种关键字:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">touchesMatching</span><span class="params">(phase: NSTouchPhase, <span class="keyword">in</span> view: NSView?)</span></span> -&gt; <span class="type">Set</span>&lt;<span class="type">NSTouch</span>&gt;</span><br></pre></td></tr></table></figure></p>
 <p>Swift3.0取消了<strong><em>几乎所有</em></strong>关键字做参数名的限制,除了<code>inout</code>,<code>let</code>,<code>var</code>,这三个如果必须要用到的话,还是需要像以前一样加单引号:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func addParameter(name: String, `inout`: Bool)</span><br></pre></td></tr></table></figure></p>
 <h2 id="SE-0002-移除科里化-Removing-currying-func-declaration-syntax"><a href="#SE-0002-移除科里化-Removing-currying-func-declaration-syntax" class="headerlink" title="SE-0002:移除科里化(Removing currying func declaration syntax)"></a>SE-0002:移除科里化(Removing currying func declaration syntax)</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
 
