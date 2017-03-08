@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,Realm," />
+  <meta name="keywords" content="iOS,Swift," />
 
 
 
@@ -84,16 +84,20 @@
 
 
 
-<meta name="description" content="记录了Realm学习和使用过程中遇到的问题和解决办法.">
+<meta name="description" content="iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Realm爬坑心得">
-<meta property="og:url" content="http://FsThatOne.github.io/2016/06/07/Realm爬坑心得/index.html">
+<meta property="og:title" content="iOS10通知及扩展">
+<meta property="og:url" content="http://FsThatOne.github.io/2017/01/02/iOS10推送及扩展/index.html">
 <meta property="og:site_name" content="ThatOne">
-<meta property="og:description" content="记录了Realm学习和使用过程中遇到的问题和解决办法.">
-<meta property="og:updated_time" content="2016-06-19T07:35:32.000Z">
+<meta property="og:description" content="iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify1.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify2.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify3.png">
+<meta property="og:updated_time" content="2017-03-08T03:59:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Realm爬坑心得">
-<meta name="twitter:description" content="记录了Realm学习和使用过程中遇到的问题和解决办法.">
+<meta name="twitter:title" content="iOS10通知及扩展">
+<meta name="twitter:description" content="iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.">
+<meta name="twitter:image" content="http://FsThatOne.github.io/./imgs/notify1.png">
 
 
 
@@ -114,9 +118,9 @@
 
 
 
-  <link rel="canonical" href="http://FsThatOne.github.io/2016/06/07/Realm爬坑心得/"/>
+  <link rel="canonical" href="http://FsThatOne.github.io/2017/01/02/iOS10推送及扩展/"/>
 
-  <title> Realm爬坑心得 | ThatOne </title>
+  <title> iOS10通知及扩展 | ThatOne </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +230,7 @@
             
             
               
-                Realm爬坑心得
+                iOS10通知及扩展
               
             
           </h1>
@@ -238,8 +242,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-07T17:45:18+08:00" content="2016-06-07">
-              2016-06-07
+            <time itemprop="dateCreated" datetime="2017-01-02T15:46:21+08:00" content="2017-01-02">
+              2017-01-02
             </time>
           </span>
 
@@ -266,11 +270,31 @@
       
 
       
-        <p><strong> 记录了Realm学习和使用过程中遇到的问题和解决办法. </strong><br><a id="more"></a></p>
-<the rest="" of="" contents="" |="" 余下全文="">
+        <p><strong> iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.</strong><br><a id="more"></a></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="iOS10推送基础"><a href="#iOS10推送基础" class="headerlink" title="iOS10推送基础"></a>iOS10推送基础</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
 
-<h3 id="通过字典和数组直接赋值"><a href="#通过字典和数组直接赋值" class="headerlink" title="通过字典和数组直接赋值"></a>通过字典和数组直接赋值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</the>
+<p>iOS10更新之后,推送的一些API和使用方法也发生了改变,相对简单的推送证书以及环境的配置就不在这里赘述了.<br>首先我们需要打开下边的开关,无论是选择苹果的APNS还是三方的推送服务,这个都是必须打开的.<br>注:这里需要在创建appId的时候开启推送服务.</p>
+<p><img src="./imgs/notify1.png" width="200" height="350"></p>
+<p>打开上边开关后,系统会给我们生成一个entitlements(权限)文件:</p>
+<p><img src="./imgs/notify2.png" width="200" height="350"></p>
+<p>可能产生的问题：将开发环境由 development 变成 production ,在开关这里会产生错误，如图：</p>
+<p><img src="./imgs/notify3.png" width="200" height="350"></p>
+<font size="4" ,="" color="#FF8C00"><strong><em>iOS10 之前</em></strong></font>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;aps&quot; : &#123;</span><br><span class="line"> 	&quot;alert&quot; : &quot;title&quot;,</span><br><span class="line"> 	&quot;badge&quot; : 1,</span><br><span class="line"> 	&quot;sound&quot;:&quot;default&quot;</span><br><span class="line"> &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font size="4" ,="" color="#FF8C00"><strong><em>iOS10 新增的文案多样性 </em></strong></font>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;aps&quot; : &#123;</span><br><span class="line">      &quot;alert&quot; : &#123;</span><br><span class="line">	        &quot;title&quot; : &quot;title&quot;,</span><br><span class="line">            &quot;subtitle&quot; : &quot;subtitle&quot;,</span><br><span class="line">	        &quot;body&quot; : &quot;Copyright © 2017年 MX. All rights reserved.&quot;</span><br><span class="line">	   &#125;,</span><br><span class="line">      &quot;badge&quot; : 1,</span><br><span class="line">      &quot;sound&quot;:&quot;default&quot;</span><br><span class="line">      &quot;content-available&quot;:1</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="iOS10推送进阶"><a href="#iOS10推送进阶" class="headerlink" title="iOS10推送进阶"></a>iOS10推送进阶</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
+
+
+
+<h2 id="UNNotificationServiceExtension-通知服务扩展"><a href="#UNNotificationServiceExtension-通知服务扩展" class="headerlink" title="UNNotificationServiceExtension(通知服务扩展)"></a>UNNotificationServiceExtension(通知服务扩展)</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
+
+<h2 id="UNNotificationContentExtension-通知内容扩展"><a href="#UNNotificationContentExtension-通知内容扩展" class="headerlink" title="UNNotificationContentExtension(通知内容扩展)"></a>UNNotificationContentExtension(通知内容扩展)</h2><font size="4" ,="" color="#FF8C00"><strong><em>Before</em></strong></font>
+
+<h2 id="Category-Action-通知策略"><a href="#Category-Action-通知策略" class="headerlink" title="Category+Action 通知策略"></a>Category+Action 通知策略</h2>
       
     </div>
 
@@ -293,7 +317,7 @@
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/Realm/" rel="tag">#Realm</a>
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
           
         </div>
       
@@ -302,17 +326,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/06/移动数据库新选择-Realm/" rel="next" title="移动数据库新选择-Realm">
-                <i class="fa fa-chevron-left"></i> 移动数据库新选择-Realm
+              <a href="/2016/06/07/Realm爬坑心得/" rel="next" title="Realm爬坑心得">
+                <i class="fa fa-chevron-left"></i> Realm爬坑心得
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/02/iOS10推送及扩展/" rel="prev" title="iOS10通知及扩展">
-                iOS10通知及扩展 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -419,7 +439,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过字典和数组直接赋值"><span class="nav-number">1.</span> <span class="nav-text">通过字典和数组直接赋值</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS10推送基础"><span class="nav-number">1.</span> <span class="nav-text">iOS10推送基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS10推送进阶"><span class="nav-number">2.</span> <span class="nav-text">iOS10推送进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNNotificationServiceExtension-通知服务扩展"><span class="nav-number">3.</span> <span class="nav-text">UNNotificationServiceExtension(通知服务扩展)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNNotificationContentExtension-通知内容扩展"><span class="nav-number">4.</span> <span class="nav-text">UNNotificationContentExtension(通知内容扩展)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Category-Action-通知策略"><span class="nav-number">5.</span> <span class="nav-text">Category+Action 通知策略</span></a></li></ol></div>
             
           </div>
         </section>
