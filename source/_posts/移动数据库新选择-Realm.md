@@ -56,7 +56,7 @@ Realm也支持RLMObject继承。
 
 #### 创建model
 
-```
+``` objectivec
 #import "City.h"
 #import <Realm/Realm.h>
 
@@ -86,7 +86,7 @@ RLM_ARRAY_TYPE(City)
 
 #### 新增数据
 首先我们要先造好数据:
-```
+``` objectivec
 Province* province=[[Province alloc] init];
 //赋值
 City *city = [[City alloc] init];
@@ -94,7 +94,7 @@ City *city = [[City alloc] init];
 ```
 
 然后就是把记录插入到数据库中:
-```
+``` objectivec
 //获取单例
 RLMRealm *realm = [RLMRealm defaultRealm];
 //开启事物
@@ -105,7 +105,7 @@ RLMRealm *realm = [RLMRealm defaultRealm];
 
 #### 更新数据
 最普通的更新数据:
-```
+``` objectivec
 [[RLMRealm defaultRealm] transactionWithBlock:^{
     Province *province=[provinceArray firstObject];
     province.shortName=@"浙江";
@@ -113,7 +113,7 @@ RLMRealm *realm = [RLMRealm defaultRealm];
 ```
 
 也可以给模型设置一个主键,根据主键去更新数据库,更新需要拥有一个主键---PrimaryKey:
-```
+``` objectivec
 @implementation bookBook
 + (NSString *)primaryKey {
  return @"id";
@@ -137,20 +137,20 @@ cheeseBook.id = @1;
 #### 删除数据
 三种方式:
 1. 单条记录删除:
-```
+``` objectivec
 [realm beginWriteTransaction];
 [realm deleteObject:cheeseBook];
 [realm commitWriteTransaction];
 ```
 2. 多条记录删除:
-```
+``` objectivec
 //result是搜索的结果
 [[RLMRealm defaultRealm] transactionWithBlock:^{
         [[RLMRealm defaultRealm] deleteObjects:result];
     }];
 ```
 3. 全部删除:
-```
+``` objectivec
 [[RLMRealm defaultRealm] transactionWithBlock:^{
         [[RLMRealm defaultRealm] deleteAllObjects];
     }];
