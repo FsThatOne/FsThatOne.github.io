@@ -1,0 +1,665 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS10通知及扩展">
+<meta property="og:url" content="http://FsThatOne.github.io/2017/01/02/iOS10推送及扩展/index.html">
+<meta property="og:site_name" content="ThatOne">
+<meta property="og:description" content="iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify1.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify2.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify3.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify4.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify5.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify6.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify7.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify8.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify9.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify10.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify11.png">
+<meta property="og:image" content="http://FsThatOne.github.io/./imgs/notify12.png">
+<meta property="og:updated_time" content="2017-03-08T05:07:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS10通知及扩展">
+<meta name="twitter:description" content="iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.">
+<meta name="twitter:image" content="http://FsThatOne.github.io/./imgs/notify1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://FsThatOne.github.io/2017/01/02/iOS10推送及扩展/"/>
+
+  <title> iOS10通知及扩展 | ThatOne </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ThatOne</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding Change the World.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS10通知及扩展
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-02T15:46:21+08:00" content="2017-01-02">
+              2017-01-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> iOS10通知的新API,和两个通知的扩展:NSNotification Service/Content Extension新特性的使用.</strong><br><a id="more"></a></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="iOS10推送基础"><a href="#iOS10推送基础" class="headerlink" title="iOS10推送基础"></a>iOS10推送基础</h2><p>iOS10更新之后,推送的一些API和使用方法也发生了改变,相对简单的推送证书以及环境的配置就不在这里赘述了.<br>首先我们需要打开下边的开关,无论是选择苹果的APNS还是三方的推送服务,这个都是必须打开的.<br>注:这里需要在创建appId的时候开启推送服务.</p>
+<p><img src="./imgs/notify1.png" alt=""></p>
+<p>打开上边开关后,系统会给我们生成一个entitlements(权限)文件:</p>
+<p><img src="./imgs/notify2.png" alt=""></p>
+<p>可能产生的问题：将开发环境由 development 变成 production ,在开关这里会产生错误，如图：</p>
+<p><img src="./imgs/notify3.png" alt=""></p>
+<font size="4" ,="" color="#FF8C00"><strong><em>iOS10 之前</em></strong></font>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;aps&quot; : &#123;</span><br><span class="line"> 	&quot;alert&quot; : &quot;title&quot;,</span><br><span class="line"> 	&quot;badge&quot; : 1,</span><br><span class="line"> 	&quot;sound&quot;:&quot;default&quot;</span><br><span class="line"> &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font size="4" ,="" color="#FF8C00"><strong><em>iOS10 新增的文案多样性 </em></strong></font>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;aps&quot; : &#123;</span><br><span class="line">      &quot;alert&quot; : &#123;</span><br><span class="line">	        &quot;title&quot; : &quot;title&quot;,</span><br><span class="line">            &quot;subtitle&quot; : &quot;subtitle&quot;,</span><br><span class="line">	        &quot;body&quot; : &quot;Copyright © 2017年 MX. All rights reserved.&quot;</span><br><span class="line">	   &#125;,</span><br><span class="line">      &quot;badge&quot; : 1,</span><br><span class="line">      &quot;sound&quot;:&quot;default&quot;</span><br><span class="line">      &quot;content-available&quot;:1</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要想在后台做一些操作，需要在APNS增加字段：<code>&quot;content-available&quot;:1</code>,并且需要在app的Background Modes中勾选<code>Remote notifications</code>选项.<br><img src="./imgs/notify4.png" alt=""></p>
+<h2 id="iOS10推送进阶"><a href="#iOS10推送进阶" class="headerlink" title="iOS10推送进阶"></a>iOS10推送进阶</h2><font size="4" ,="" color="#FF8C00"><strong><em>发起通知:</em></strong></font>
+
+<p>下面以本地通知为例:</p>
+<p>发起一个通知需要三个要素:</p>
+<ul>
+<li>触发器<br>  通知触发器类型分为三类:<ol>
+<li>定时触发器UNTimeIntervalNotificationTrigger</li>
+<li>周期(日历)触发器UNCalendarNotificationTrigger</li>
+<li>位置触发器UNLocationNotificationTrigger</li>
+</ol>
+</li>
+<li>通知体<br>UN(Mutable)NotificationContent,它的属性有:<br>  attachments //附件<br>  badge //数字标志<br>  title //推送内容标题<br>  subtitle //推送内容子标题<br>  body //推送内容body<br>  categoryIdentifier //category标识，操作策略<br>  launchImageName //点击通知进入应用的启动图<br>  sound //声音<br>  userInfo //附带通知内容  </li>
+<li>通知的请求<br>UNNotificationRequest, 它接收一个identifier,用于标识通知(用于通知合并等操作),一个content,还有一个触发器trigger.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 本地通知基础</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testBasicNotice</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">/// content</span></span><br><span class="line">    <span class="keyword">let</span> notify = <span class="type">UNMutableNotificationContent</span>()</span><br><span class="line">    notify.title = <span class="string">"美办"</span></span><br><span class="line">    notify.subtitle = <span class="string">"云办公事业部"</span></span><br><span class="line">    notify.body = <span class="string">"你收到了一条消息"</span></span><br><span class="line">    notify.badge = <span class="number">1</span></span><br><span class="line">    notify.sound = <span class="type">UNNotificationSound</span>.<span class="keyword">default</span>()      notify.userInfo = [<span class="string">"name"</span>: <span class="string">"美办"</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 触发器</span></span><br><span class="line">    <span class="comment">// 日期触发器</span></span><br><span class="line">    <span class="keyword">var</span> dateComponents = <span class="type">DateComponents</span>()</span><br><span class="line">    dateComponents.weekday = <span class="number">4</span> <span class="comment">// 周三触发</span></span><br><span class="line">    dateComponents.hour = <span class="number">12</span> <span class="comment">// 12点</span></span><br><span class="line">    <span class="keyword">let</span> dateTrigger = <span class="type">UNCalendarNotificationTrigger</span>(dateMatching: dateComponents, repeats: <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 延时触发器</span></span><br><span class="line">    <span class="keyword">let</span> timeTrigger = <span class="type">UNTimeIntervalNotificationTrigger</span>(timeInterval: <span class="number">3</span>, repeats: <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 位置触发器</span></span><br><span class="line">    <span class="keyword">let</span> cen = <span class="type">CLLocationCoordinate2D</span>(latitude: <span class="number">39.990465</span>, longitude: <span class="number">116.333386</span>)</span><br><span class="line">    <span class="keyword">let</span> region = <span class="type">CLCircularRegion</span>(center: cen, radius: <span class="number">1000</span>, identifier: <span class="string">"center"</span>)</span><br><span class="line">    region.notifyOnEntry = <span class="literal">true</span>;</span><br><span class="line">    region.notifyOnExit = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">let</span> locationTrigger = <span class="type">UNLocationNotificationTrigger</span>(region: region, repeats: <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// request</span></span><br><span class="line">    <span class="keyword">let</span> timeRequest = <span class="type">UNNotificationRequest</span>(identifier: <span class="string">"meiban"</span>, content: notify, trigger: timeTrigger)</span><br><span class="line">    <span class="keyword">let</span> calendarRequest = <span class="type">UNNotificationRequest</span>(identifier: <span class="string">"meiban1"</span>, content: notify, trigger: dateTrigger)</span><br><span class="line">    <span class="keyword">let</span> locationRequest = <span class="type">UNNotificationRequest</span>(identifier: <span class="string">"meiban2"</span>, content: notify, trigger: locationTrigger)</span><br><span class="line">    <span class="type">UNUserNotificationCenter</span>.current().add(timeRequest) &#123; (error) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> (error != <span class="literal">nil</span>) &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"错误:<span class="subst">\(error)</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">UNUserNotificationCenter</span>.current().add(calendarRequest) &#123; (error) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> (error != <span class="literal">nil</span>) &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"错误:<span class="subst">\(error)</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">UNUserNotificationCenter</span>.current().add(locationRequest) &#123; (error) <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> (error != <span class="literal">nil</span>) &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"错误:<span class="subst">\(error)</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font size="4" ,="" color="#FF8C00"><strong><em>接收通知:</em></strong></font>
+
+<p>下图是<strong><em>应用在前台</em></strong>时,收到通知后,通知弹起之前的代理方法(之前老的方法还是会调):</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 弹通知之前的操作 只有在应用在前台时会调用</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">userNotificationCenter</span><span class="params">(<span class="number">_</span> center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping <span class="params">(UNNotificationPresentationOptions)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (notification.request.trigger?.isKind(of: <span class="type">UNPushNotificationTrigger</span>.<span class="keyword">self</span>))! &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"远程推送"</span>)</span><br><span class="line">            completionHandler([.badge, .alert, .sound])</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"本地推送"</span>)</span><br><span class="line">            <span class="keyword">if</span> notification.request.content.categoryIdentifier == <span class="string">"approvalView"</span> || notification.request.content.categoryIdentifier == <span class="string">"approvalDetailView"</span> &#123;</span><br><span class="line">                completionHandler([.badge, .alert, .sound])</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以通过触发器的类型判断是远程推送还是本地推送.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 点开通知或者点击通知的Action会调用</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">userNotificationCenter</span><span class="params">(<span class="number">_</span> center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (response.notification.request.trigger?.isKind(of: <span class="type">UNPushNotificationTrigger</span>.<span class="keyword">self</span>))! &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"远程推送"</span>)</span><br><span class="line">            completionHandler()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"本地推送"</span>)</span><br><span class="line"></span><br><span class="line">            completionHandler()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>点击/侧滑/点击action通知时,会走response的回调,同样可以区分是否是远程推送.</p>
+<font size="4" ,="" color="#FF8C00"><strong><em>管理通知</em></strong></font>
+
+<ul>
+<li><p>更新通知</p>
+<ol>
+<li><p>创建一个UNNotificationRequest类的实例，一定要为它设置identifier, 在后面的查找，更新， 删除通知，这个标识是用来区分这个通知与其他通知的.</p>
+</li>
+<li><p>把request加到UNUserNotificationCenter， 并设置触发器，等待触发<br>如果另一个request具有和之前request相同的标识，不同的内容， 可以达到更新通知的目的.</p>
+</li>
+<li><p>这里有一点需要注意,如果两个request的标识相同,并且在第一个通知尚未触发时发出第二个通知的请求,那么第一个通知将不会显示,直接显示第二条通知(将第一条覆盖了).</p>
+</li>
+</ol>
+</li>
+<li><p>删除通知<br>调用UNUserNotificationCenter对应的方法,可以删除特定的通知:</p>
+<p>  <code>removePendingNotificationRequestsWithIdentifiers:</code> //删除特定等待递送的通知<br>  <code>removeAllPendingNotificationRequests:</code> //删除所有等待递送的通知<br>  <code>removeDeliveredNotificationsWithIdentifiers:</code> //删除特定已经递送的通知<br>  <code>removeAllDeliveredNotifications:</code> //删除已经递送的通知</p>
+</li>
+<li><p>查找通知<br>这里只能获取所有的等待递送的通知和已经递送的通知,然后手动搜索特定的通知内容:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除所有尚未发出的通知</span></span><br><span class="line"><span class="type">UNUserNotificationCenter</span>.current().removeAllPendingNotificationRequests()</span><br><span class="line"><span class="comment">// 删除所有已经发出的通知</span></span><br><span class="line"><span class="type">UNUserNotificationCenter</span>.current().removeAllDeliveredNotifications()</span><br><span class="line"><span class="comment">// 根据id移除已经发出的指定通知</span></span><br><span class="line"><span class="type">UNUserNotificationCenter</span>.current().removeDeliveredNotifications(withIdentifiers: [<span class="string">"haha"</span>])</span><br><span class="line"><span class="comment">// 获取所有已经发出的通知</span></span><br><span class="line"><span class="type">UNUserNotificationCenter</span>.current().getDeliveredNotifications &#123; (notice) <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(notice)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取所有尚未发出的通知</span></span><br><span class="line"><span class="type">UNUserNotificationCenter</span>.current().getPendingNotificationRequests &#123; (notice) <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(notice)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<font size="4" ,="" color="#FF8C00"><strong><em>通知附件</em></strong></font>
+
+<p>在UNNotificationContent类中，有个附件数组的属性，这就是包含UNNotificationAttachment类的数组了,可以包含音频，图像或视频内容，并且可以将其内容显示出来的通知。使用本地通知时，可以在通知创建时，将附件加入即可。对于远程通知，则必须实现使用UNNotificationServiceExtension类通知服务扩展。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Optional array of attachments.</span></span><br><span class="line">open <span class="keyword">var</span> attachments: [<span class="type">UNNotificationAttachment</span>]</span><br></pre></td></tr></table></figure>
+<p><strong><em>附件支持的类型和大小:</em></strong><br><img src="./imgs/notify5.png" alt=""></p>
+<ol>
+<li><code>UNNotificationAttachmentOptionsTypeHintKey:</code><br> 此键的值是一个包含描述文件的类型统一类型标识符（UTI）一个NSString.如果不提供该键，附件的文件扩展名来确定其类型，常用的类型标识符有<code>kUTTypeImage</code>,<code>kUTTypeJPEG2000</code>,<code>kUTTypeTIFF</code>,<code>kUTTypePICT</code>,<code>kUTTypeGIF</code>,<code>kUTTypePNG</code>,<code>kUTTypeQuickTimeImage</code>等(需要<code>import MobileCoreServices</code>)</li>
+<li><code>2UNNotificationAttachmentOptionsThumbnailHiddenKey:</code><br> 是一个BOOL值，为true时候，缩略图将隐藏，默认为true</li>
+<li><code>UNNotificationAttachmentOptionsThumbnailTimeKey:</code><br> 一般影片附件会用到，指的是用影片中的某一秒来做这个缩略图</li>
+<li><code>UNNotificationAttachmentOptionsThumbnailClippingRectKey:</code><br> 根据大图生成缩略图的策略,需要传入一个<code>CGRect</code>结构体,其x,y,width以及height分别对应大图的锚点和截取比例,画图举例:<br><img src="./imgs/notify6.png" alt=""></li>
+</ol>
+<h2 id="UNNotificationServiceExtension-通知服务扩展"><a href="#UNNotificationServiceExtension-通知服务扩展" class="headerlink" title="UNNotificationServiceExtension(通知服务扩展)"></a>UNNotificationServiceExtension(通知服务扩展)</h2><font size="4" ,="" color="#FF8C00"><strong><em>APNs</em></strong></font>
+
+<p><img src="./imgs/notify7.png" alt=""></p>
+<font size="4" ,="" color="#FF8C00"><strong><em>优势与意义:</em></strong></font>
+
+<ul>
+<li><p>安全<br>安全总是摆在第一位的，从iOS9开始，苹果鼓励我们使用更为安全的https协议可以看的出来，苹果公司是对安全很重视的一家公司，为什么在这里我会提到安全呢？是因为之前我们的推送内容，不管是通过第三方，还是通过苹果自带的通知处理，如果让有心人对数据做一次拦截，抓个包啥的，我们推送的内容就会完全暴露.（除非把所有的远程推送变成本地通知）通过此次这次增加的UNNotificationServiceExtension的类，便可以更好的帮助我们实现数据的加密。<br>它的原理便是在收到通知后的最多30s内(此时通知栏并没有通知)，你可以把你的通知内容，解密并处理后，再展示在用户的通知拦上。</p>
+</li>
+<li><p>内容丰富<br>这次苹果新添加的附件通知，结合上通知拓展类，便可以给用户展现出一个有着丰富内容的通知.比如,一个小短片的某一秒的画面,又或者是配上一些小图片啊（通过服务器传来的Url）等方式来吸引用户，诱导用户点开你的通知，促使用户会使用你的App。<br>其实推送这个功能，虽然有的人会关闭，但是大部分的人还是开启的，灵活利用推送，会让你的程序拥有更多的可能。</p>
+</li>
+</ul>
+<font size="4" ,="" color="#FF8C00"><strong><em>使用:</em></strong></font>
+
+<p>创建一个target不解释:<br><img src="./imgs/notify8.png" alt=""> <img src="./imgs/notify9.png" alt=""><br>这里有一个证书问题需要说一下:<br>Extension的BundleId是主工程BundleId.Extension名:<br><img src="./imgs/notify10.png" alt=""></p>
+<ul>
+<li>处理通知内容重写的方法:<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> request: UNNotificationRequest, withContentHandler contentHandler: @escaping <span class="params">(UNNotificationContent)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.contentHandler = contentHandler</span><br><span class="line">    bestAttemptContent = (request.content.mutableCopy() <span class="keyword">as</span>? <span class="type">UNMutableNotificationContent</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> bestAttemptContent = bestAttemptContent &#123;</span><br><span class="line">        <span class="comment">// Modify the notification content here...</span></span><br><span class="line">        bestAttemptContent.title = <span class="string">"<span class="subst">\(bestAttemptContent.title)</span> [修改后的标题]"</span> + <span class="string">"哈哈哈"</span></span><br><span class="line">        bestAttemptContent.subtitle = <span class="string">"<span class="subst">\(bestAttemptContent.subtitle)</span> [修改后的子标题]"</span> + <span class="string">"哈哈哈"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//1. 下载</span></span><br><span class="line">        <span class="keyword">let</span> url = <span class="type">URL</span>(string: <span class="string">"http://img1.gtimg.com/sports/pics/hv1/194/44/2136/138904814.jpg"</span>)</span><br><span class="line">        <span class="keyword">let</span> config = <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span></span><br><span class="line">        <span class="keyword">let</span> session = <span class="type">URLSession</span>(configuration: config)</span><br><span class="line">        <span class="keyword">let</span> path = <span class="type">NSSearchPathForDirectoriesInDomains</span>(.libraryDirectory, .userDomainMask, <span class="literal">true</span>).first! + <span class="string">"download/image.jpg"</span></span><br><span class="line">        <span class="keyword">let</span> task: <span class="type">URLSessionDataTask</span> = session.dataTask(with: url!, completionHandler: &#123; (data, response, error) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> image = <span class="type">UIImage</span>(data: data!)</span><br><span class="line">                <span class="comment">// 2. 存起来</span></span><br><span class="line">                <span class="keyword">try</span>! <span class="type">UIImageJPEGRepresentation</span>(image!, <span class="number">1</span>)!.write(to: <span class="type">URL</span>(string: path)!, options: .atomic)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 3. 生成附件</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> attach = <span class="keyword">try</span>? <span class="type">UNNotificationAttachment</span>(identifier: <span class="string">"remote"</span>, url: <span class="type">URL</span>(string: path)!, options: <span class="literal">nil</span>) &#123;</span><br><span class="line">                <span class="comment">// 4. 设置附件</span></span><br><span class="line">                bestAttemptContent.attachments = [attach]</span><br><span class="line">                contentHandler(bestAttemptContent)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        task.resume()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>本地推送通知带附件，只需给content.attachments设置UNNotificationAttachment附件对象.<br>远程推送通知则需要实现 UNNotificationServiceExtension,在回调方法中设置 request.content.attachments属性，之后调用 contentHandler 方法即可,此时,由于远程通知无法携带附件,所以只能从手机内存取或者去下载,由于通知的不确定性,故后者(下载)的可能性更大.</p>
+<ul>
+<li>处理超时的回调方法:<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">serviceExtensionTimeWillExpire</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// Called just before the extension will be terminated by the system.</span></span><br><span class="line">    <span class="comment">// Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> contentHandler = contentHandler, <span class="keyword">let</span> bestAttemptContent =  bestAttemptContent &#123;</span><br><span class="line">        contentHandler(bestAttemptContent)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当上述方法处理通知超时(30s),则会调用这个方法,这里是我们最后修改通知内容的机会.</p>
+<h2 id="UNNotificationContentExtension-通知内容扩展"><a href="#UNNotificationContentExtension-通知内容扩展" class="headerlink" title="UNNotificationContentExtension(通知内容扩展)"></a>UNNotificationContentExtension(通知内容扩展)</h2><font size="4" ,="" color="#FF8C00"><strong><em>简介:</em></strong></font>
+
+<p>简单来说，UNNotificationContentExtension这个类，也是iOS10推送的新特性，官方文档用这么一句话，简单的解释了一下,Presents a custom interface for a delivered local or remote notification.（当你收到远程或者本地通知的时候，弹出一个自定义界面）.</p>
+<p><strong><em>注:</em></strong> 此自定义的界面并不能接收点击事件(除音视频的播放按钮)</p>
+<p>创建的方法也是Target的方式,同NotificationServiceExtension,这里需要重点关注一下他生成的plist文件, 见下图:<br><img src="./imgs/notify11.png" alt=""></p>
+<ol>
+<li><code>UNNotificationExtensionCategory</code>.(Required)<br>解释：对应这个key的值，可以是一个字符串，也可以是一个数组，每一个字符串都是一个identifier，这个identifier对应着每一个UNMutableNotificationContent的categoryIdentifier的属性。<br>简单来说，就是在收到通知的时候，我们可以让服务器把这个通知的categoryIdentifier带上，作用是，我们可以根据视频，音乐，图片，来分别自定义我们的通知内容。不同的分类标识符，也会在我们讲到UNNotificationAction的时候，帮助我们区分是什么类型的通知，方便我们对不同类型的通知做出不同的操作行为。</li>
+<li><code>UNNotificationExtensionInitialContentSizeRatio</code>.(Required)<br>解释：这个值的类型是一个浮点类型，代表的是高度与宽度的比值。系统会使用这个比值，作为初始化view的大小。举个简单的例子来说，如果该值为1，则该视图为正方形。如果为0.5，则代表高度是宽度的一半。<br>注意这个值只是初始化的一个值，在这个扩展添加后，可以重写frame，展示的时候，在我们还没打开这个视图预览时，背景是个类似图片占位的灰色，那个灰色的高度宽度之比，就是通过这个值来设定。</li>
+<li><code>UNNotificationExtensionDefaultContentHidden</code>.(Optional)<br>解释：这个值是一个BOOL值，当为YES时，会隐藏上方原本推送的内容视图，只会显示我们自定义的视图。（因为在自定义视图的时候，我们可以取得推送内容，然后按照我们想要的布局，展示出来）如果为NO时（默认为NO），推送视图就会既有我们的自定义视图，也会有系统原本的推送内容视图（这里附件是不会显示的，只会显示body里面的文字哟）</li>
+<li><code>NSExtensionMainStoryboard</code>以及<code>NSExtensionPointIdentifier</code>，系统默认生成，直接用就好，如果需要更改的，只能更改使用的storyboard的名字<br><img src="./imgs/notify12.png" alt=""></li>
+</ol>
+<p>每个分类有一个<code>categoryIdentifier</code>属性,每一个action也有一个actionId属性,他们都是用来区分哪一种通知应该跳哪一种视图,以及这种视图有哪几种操作,见如下代码设置:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">AppDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setupCategories</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> transforAction = <span class="type">UNNotificationAction</span>(identifier: <span class="string">"transfor"</span>, title: <span class="string">"转发"</span>, options: [.foreground])</span><br><span class="line">        <span class="keyword">let</span> agreeAction = <span class="type">UNTextInputNotificationAction</span>(identifier: <span class="string">"agree"</span>, title: <span class="string">"同意"</span>, options: [.foreground], textInputButtonTitle: <span class="string">"同意"</span>, textInputPlaceholder: <span class="string">"同意理由"</span>)</span><br><span class="line">        <span class="keyword">let</span> refuseAction = <span class="type">UNTextInputNotificationAction</span>(identifier: <span class="string">"refuse"</span>, title: <span class="string">"拒绝"</span>, options: [.foreground, .destructive], textInputButtonTitle: <span class="string">"拒绝"</span>, textInputPlaceholder: <span class="string">"拒绝理由"</span>)</span><br><span class="line">        <span class="keyword">let</span> collectAction = <span class="type">UNNotificationAction</span>(identifier: <span class="string">"collect"</span>, title: <span class="string">"收藏"</span>, options: [.foreground])</span><br><span class="line">        <span class="keyword">let</span> detailAction = <span class="type">UNNotificationAction</span>(identifier: <span class="string">"detail"</span>, title: <span class="string">"查看详情"</span>, options: [.foreground])</span><br><span class="line">        <span class="keyword">let</span> saveAction = <span class="type">UNNotificationAction</span>(identifier: <span class="string">"save"</span>, title: <span class="string">"保存附件"</span>, options: [.foreground])</span><br><span class="line">        <span class="keyword">let</span> saveToAction = <span class="type">UNNotificationAction</span>(identifier: <span class="string">"saveTo"</span>, title: <span class="string">"归档"</span>, options: [.foreground, .destructive])</span><br><span class="line">        <span class="keyword">let</span> actionTextField = <span class="type">UNTextInputNotificationAction</span>(identifier: <span class="string">"textFiled"</span>, title: <span class="string">"回复"</span>, options: [.foreground], textInputButtonTitle: <span class="string">"发送"</span>, textInputPlaceholder: <span class="string">"回复曹烨"</span>)</span><br><span class="line">        <span class="keyword">let</span> imageCat = <span class="type">UNNotificationCategory</span>(identifier: <span class="string">"imageView"</span>, actions: [actionTextField, detailAction, saveAction], intentIdentifiers: [<span class="string">"actionTextField"</span>, <span class="string">"detailAction"</span>, <span class="string">"SaveAction"</span>], options: [])</span><br><span class="line">        <span class="keyword">let</span> messageCat = <span class="type">UNNotificationCategory</span>(identifier: <span class="string">"messageView"</span>, actions: [actionTextField, detailAction], intentIdentifiers: [<span class="string">"actionTextField"</span>, <span class="string">"detailAction"</span>], options: [])</span><br><span class="line">        <span class="keyword">let</span> videoCat = <span class="type">UNNotificationCategory</span>(identifier: <span class="string">"videoView"</span>, actions: [actionTextField, transforAction, collectAction], intentIdentifiers: [<span class="string">"actionTextField"</span>, <span class="string">"transforAction"</span>, <span class="string">"collectAction"</span>], options: [])</span><br><span class="line">        <span class="keyword">let</span> approvalCat = <span class="type">UNNotificationCategory</span>(identifier: <span class="string">"approvalView"</span>, actions: [agreeAction, refuseAction], intentIdentifiers: [<span class="string">"actionTextField"</span>, <span class="string">"detailAction"</span>], options: [])</span><br><span class="line">        <span class="keyword">let</span> approvalDetailCat = <span class="type">UNNotificationCategory</span>(identifier: <span class="string">"approvalDetailView"</span>, actions: [detailAction, saveToAction], intentIdentifiers: [<span class="string">"detailAction"</span>, <span class="string">"saveToAction"</span>], options: [])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">set</span>: <span class="type">Set</span>&lt;<span class="type">UNNotificationCategory</span>&gt; = [imageCat, messageCat, videoCat, approvalCat, approvalDetailCat]</span><br><span class="line">        <span class="type">UNUserNotificationCenter</span>.current().setNotificationCategories(<span class="keyword">set</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>action有两种,一种是默认的按钮,另一种是输入框,默认的按钮有三种显示形式,比如:普通形式,文字标红等.<br>我们可以在<code>NotificationViewController</code>中根据不同分类的id去定义不同的视图.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> notification: UNNotification)</span></span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> notification.request.content.categoryIdentifier &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"imageView"</span>:</span><br><span class="line">            preferredContentSize = <span class="type">CGSize</span>(width: view.bounds.width, height: <span class="number">230</span>)</span><br><span class="line">            imageView = <span class="type">UIView</span>(frame: view.bounds)</span><br><span class="line">            <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"wwdc17"</span>, ofType: <span class="string">"jpg"</span>)</span><br><span class="line">            <span class="keyword">let</span> imageViewa = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(contentsOfFile: path!))</span><br><span class="line">            imageViewa.frame = <span class="type">CGRect</span>(x: <span class="number">5</span>, y: <span class="number">5</span>, width: view.bounds.width, height: <span class="number">220</span>)</span><br><span class="line">            imageView!.addSubview(imageViewa)</span><br><span class="line">            view.addSubview(imageView!)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"messageView"</span>:</span><br><span class="line">            preferredContentSize = <span class="type">CGSize</span>(width: view.bounds.width , height: <span class="number">700</span>)</span><br><span class="line">            <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"message"</span>, ofType: <span class="string">"png"</span>)</span><br><span class="line">            messageImageView = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(contentsOfFile: path!))</span><br><span class="line">            messageImageView!.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: view.bounds.width, height: <span class="number">700</span>)</span><br><span class="line">            view.addSubview(messageImageView!)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"approvalView"</span>:</span><br><span class="line">            preferredContentSize = <span class="type">CGSize</span>(width: view.bounds.width , height: <span class="number">600</span>)</span><br><span class="line">            <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"approval"</span>, ofType: <span class="string">"png"</span>)</span><br><span class="line">            messageImageView = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(contentsOfFile: path!))</span><br><span class="line">            messageImageView!.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: view.bounds.width, height: <span class="number">600</span>)</span><br><span class="line">            view.addSubview(messageImageView!)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"approvalDetailView"</span>:</span><br><span class="line">            preferredContentSize = <span class="type">CGSize</span>(width: view.bounds.width , height: <span class="number">700</span>)</span><br><span class="line">            <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"approvalDetail"</span>, ofType: <span class="string">"png"</span>)</span><br><span class="line">            messageImageView = <span class="type">UIImageView</span>(image: <span class="type">UIImage</span>(contentsOfFile: path!))</span><br><span class="line">            messageImageView!.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: view.bounds.width, height: <span class="number">700</span>)</span><br><span class="line">            view.addSubview(messageImageView!)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            preferredContentSize = <span class="type">CGSize</span>(width: view.bounds.width, height: <span class="number">500</span>)</span><br><span class="line">            <span class="keyword">let</span> imageView = <span class="type">UIImageView</span>(frame: view.bounds)</span><br><span class="line">            view.addSubview(imageView)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>并且可以在<code>NotificationViewController</code>中根据不同action的id去定义不同的响应操作.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> response: UNNotificationResponse, completionHandler completion: @escaping <span class="params">(UNNotificationContentExtensionResponseOption)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> notify = response.notification</span><br><span class="line">        <span class="keyword">let</span> categoryId = notify.request.content.categoryIdentifier</span><br><span class="line">        <span class="keyword">switch</span> categoryId &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"imageView"</span>:</span><br><span class="line">            completion(.dismissAndForwardAction)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"messageView"</span>:</span><br><span class="line">            <span class="keyword">if</span> response.actionIdentifier == <span class="string">"detail"</span> &#123;</span><br><span class="line">                completion(.dismissAndForwardAction)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"messageRe"</span>, ofType: <span class="string">"png"</span>)</span><br><span class="line">                messageImageView?.image = <span class="type">UIImage</span>(contentsOfFile: path!)</span><br><span class="line">                completion(.doNotDismiss)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"approvalView"</span>:</span><br><span class="line">            view.resignFirstResponder()</span><br><span class="line">            completion(.dismiss)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"approvalDetailView"</span>:</span><br><span class="line">            view.resignFirstResponder()</span><br><span class="line">            completion(.dismissAndForwardAction)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">if</span> response.actionIdentifier == <span class="string">"textFiled"</span> &#123;</span><br><span class="line">                completion(.doNotDismiss)</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> response.actionIdentifier == <span class="string">"transfer"</span> &#123;</span><br><span class="line">                completion(.dismissAndForwardAction)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                completion(.dismiss)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/07/Realm爬坑心得/" rel="next" title="Realm爬坑心得">
+                <i class="fa fa-chevron-left"></i> Realm爬坑心得
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="FsThatOne" />
+          <p class="site-author-name" itemprop="name">FsThatOne</p>
+          <p class="site-description motion-element" itemprop="description">莫非王土,莫非王臣.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS10推送基础"><span class="nav-number">1.</span> <span class="nav-text">iOS10推送基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS10推送进阶"><span class="nav-number">2.</span> <span class="nav-text">iOS10推送进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNNotificationServiceExtension-通知服务扩展"><span class="nav-number">3.</span> <span class="nav-text">UNNotificationServiceExtension(通知服务扩展)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNNotificationContentExtension-通知内容扩展"><span class="nav-number">4.</span> <span class="nav-text">UNNotificationContentExtension(通知内容扩展)</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FsThatOne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
