@@ -5,7 +5,7 @@ tags:
  - cocoaPods
  - iOS
  - git
-toc: true
+top: false
 ---
    ** 如何创建私有cocoaPods库:**
 <!-- more -->
