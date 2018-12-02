@@ -1,0 +1,588 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="iOS,React Native,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述使用Visual Studio Code开发RN时,该如何搭建集成开发环境,代码智能提示,以及如何调试.">
+<meta name="keywords" content="iOS,React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native 学习历程 - 环境搭建">
+<meta property="og:url" content="http://FsThatOne.github.io/2017/04/01/React Native 学习历程 - 环境搭建/index.html">
+<meta property="og:site_name" content="ThatOne">
+<meta property="og:description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述使用Visual Studio Code开发RN时,该如何搭建集成开发环境,代码智能提示,以及如何调试.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://fsthatone.github.io/2017/04/01/React%20Native%20学习历程%20-%20环境搭建/imgs/nuclide.png">
+<meta property="og:image" content="http://fsthatone.github.io/2017/04/01/React%20Native%20学习历程%20-%20环境搭建/imgs/sublime.png">
+<meta property="og:image" content="http://fsthatone.github.io/2017/04/01/React%20Native%20学习历程%20-%20环境搭建/imgs/debug.png">
+<meta property="og:image" content="http://fsthatone.github.io/2017/04/01/React%20Native%20学习历程%20-%20环境搭建/imgs/debugjson.png">
+<meta property="og:image" content="http://fsthatone.github.io/2017/04/01/React%20Native%20学习历程%20-%20环境搭建/imgs/who_tm_care.jpeg">
+<meta property="og:updated_time" content="2018-11-13T06:57:13.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native 学习历程 - 环境搭建">
+<meta name="twitter:description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述使用Visual Studio Code开发RN时,该如何搭建集成开发环境,代码智能提示,以及如何调试.">
+<meta name="twitter:image" content="http://fsthatone.github.io/2017/04/01/React%20Native%20学习历程%20-%20环境搭建/imgs/nuclide.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://FsThatOne.github.io/2017/04/01/React Native 学习历程 - 环境搭建/">
+
+  <title> React Native 学习历程 - 环境搭建 | ThatOne </title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ThatOne</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding Change the World.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Native 学习历程 - 环境搭建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-01T15:46:21+08:00" content="2017-04-01">
+              2017-04-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> 这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述使用Visual Studio Code开发RN时,该如何搭建集成开发环境,代码智能提示,以及如何调试. </strong><br><a id="more"></a></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h1 id="开发RN的IDE一览"><a href="#开发RN的IDE一览" class="headerlink" title="开发RN的IDE一览"></a>开发RN的IDE一览</h1><h2 id="主流IDE"><a href="#主流IDE" class="headerlink" title="主流IDE"></a>主流IDE</h2><h3 id="Nuclide"><a href="#Nuclide" class="headerlink" title="Nuclide"></a>Nuclide</h3><p><code>Nuclide</code>是Facebook专门为React开发的IDE，因此，Nuclide拥有很好的语法补全、类型检查等支持。<br>本质上，Nuclide是Atom基础上的一系列插件集合。因此，要使用Nuclide，首先需要安装Atom。Atom是Github推出的开源编辑器。是使用node.js来作为插件的语言的。</p>
+<ol>
+<li>安装atom<br>从<a href="https://atom.io/" target="_blank" rel="external">Atom官网</a>下载安装.</li>
+<li>安装Nuclide<br>打开Atom，选择<code>Preferences</code> –&gt; <code>install</code> ，输入Nuclide进行搜索并安装。<br><img src="./imgs/nuclide.png" alt="nuclide"></li>
+<li>不建议使用,因为atom是真的太卡,的太卡,太卡,卡…  </li>
+</ol>
+<h3 id="Sublime"><a href="#Sublime" class="headerlink" title="Sublime"></a>Sublime</h3><ol>
+<li>安装Sublime Text 3<br>到<a href="http://www.sublimetext.com/3" target="_blank" rel="external">Sublime Text</a>官网下载。<br>选对相应的平台进行安装即可。</li>
+<li>安装Package Control<br>在Sublime Text 3中使用PackageControl安装插件。<br>使用<code>Ctrl + ,</code>或者通过<code>View</code> –&gt; <code>Show Console</code>打开命令行，粘贴以下代码：<br><code>import urllib.request,os,hashlib; h = &#39;2915d1851351e5ee549c20394736b442&#39; + &#39;8bc59f460fa1548d1514676163dafc88&#39;; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &#39;http://packagecontrol.io/&#39; + pf.replace(&#39; &#39;, &#39;%20&#39;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&#39;Error validating download (got %s instead of %s), please try manual install&#39; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &#39;wb&#39; ).write(by)</code>  如果安装失败,请看<a href="http://www.cnblogs.com/luoshupeng/archive/2013/09/09/3310777.html" target="_blank" rel="external">这里</a>.</li>
+<li>安装React Native 需要用到的插件</li>
+</ol>
+<ul>
+<li>React Native 开发推荐的一些插件：  <blockquote>
+<p><code>ReactJS</code>：支持React开发，提供JSX代码提示，高亮显示，ReactJS官方介绍<br><code>Emmet</code>：前端开发必备，能够存储和重用开发代码块，Emmet介绍<br><code>Terminal</code>：在Sublime中打开终端并定位到当前目录，（快捷键cmd+shift+T）<br><code>react-native-snippets</code>：react native 代码片段，react-native-snippets官方介绍  </p>
+</blockquote>
+</li>
+<li>打开Package Control：点击菜单栏Preferences–&gt;Package Control 或者使用快捷键 Ctrl + Shift + T</li>
+<li>输入install选中：Package Control:install package</li>
+<li>等待几秒，在弹出的终端中输入想要安装的插件。<br>最终安装好插件后界面如下：<br><img src="./imgs/sublime.png" alt="sublime">  </li>
+</ul>
+<h3 id="WebStorm"><a href="#WebStorm" class="headerlink" title="WebStorm"></a>WebStorm</h3><p>之前做过web相关的同学们，对于WebStorm IDE应该非常熟悉了。这个IDE是jetbrains公司旗下的一款JavaScript开发工具，被广大的中国JS开发者誉为“Web前端开发神器”等。他与Interllij IDEA 同源，集成了Interllij的部分JavaScript功能。Interllij版本已经支持React了，所以在现如今的开发阶段WebStorm已经算是支持性最好的IDE了。<br>这里不想再赘述了,网上一抓一大把的IDE配置,不磨叽了.<br>Ps:另外，由于WebStorm的内存占用500M左右，对于小内存的开发者来说，不是最好的选择。</p>
+<h2 id="非主流IDE"><a href="#非主流IDE" class="headerlink" title="非主流IDE"></a>非主流IDE</h2><h3 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h3><p>首先明确一下，这个Visual Studio Code（以下简称vscode）是一个带GUI的代码编辑器，也就是只能完成简单的代码编辑功能，并不是一个集成开发环境（IDE）。而Visual Studio、WebStorm这类的开发工具是IDE，功能强大，这两个是不一样的概念。<br>但是,它的定制度很高,经过配置后可以做各种开发语言的IDE,作为文本编辑器启动速度比atom,Sublime3快了百十来倍;作为React Native的IDE,无论是智能提示还是代码高亮亦或是调试,比Web Storm丝毫不逊色.<br>最重要的是,它轻量啊!!!好处多多,sei用sei资道.  </p>
+<p><iframe height="750" width="900" src="./imgs/vscode.gif" scrolling="no" frameborder="0"></iframe>  </p>
+<ol>
+<li>下载<a href="https://code.visualstudio.com/Download" target="_blank" rel="external">Visual Studio Code</a>.</li>
+<li>安装插件:  <blockquote>
+<p><code>React Native Tools</code>:微软专门为RN出的一款插件,非常好用.<br><code>Reactjs code snippets</code>:可以通过几个单词的缩写,直接调出指定代码段,非常省时省力.<br><code>vscode-icons</code>:vscode的图标支持,可以根据文件类型,显示出不同的图标.<br><code>Path Intellisense</code>:文件路径只能提示.<br><code>ESLint</code>:ES代码检测支持.<br><code>Babel ES6/ES7</code>:如其名.  </p>
+</blockquote>
+</li>
+<li>调试环境的配置:<br>点击左侧小虫子的图标进入debug panel:<br><img src="./imgs/debug.png" alt=""><br>点击齿轮,会自动在你的RN根目录的.vscode/下生成一个launch.json,点开可见:<br><img src="./imgs/debugjson.png" alt=""><br>随便一配置就能按F5调试啦(前提是你得有Xcode)!如果需要真机调试的话,去网上一搜,或者去RN中文官网上面看一下就好了.<h1 id="我的选择"><a href="#我的选择" class="headerlink" title="我的选择"></a>我的选择</h1>正所谓工欲善其事,必先利其器,选择自己喜欢并且用起来舒适的IDE,往往能够提高开发效率,或者至少能让我开发时心情愉悦.<br>至于功能是不是全面,IDE是否稳定什么的<img src="./imgs/who_tm_care.jpeg" alt="who tm care"><br>对比之下,我更喜欢Visual Studio Code,理由是定制度非常高,赏(fang)心(bian)悦(zhuang)目(bi),且易(gao)配(da)置(shang).</li>
+</ol>
+</the>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/02/iOS10推送及扩展/" rel="next" title="iOS10通知及扩展">
+                <i class="fa fa-chevron-left"></i> iOS10通知及扩展
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/10/React Native 学习历程 - 小技巧/" rel="prev" title="React Native 学习历程 - 小技巧">
+                React Native 学习历程 - 小技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="FsThatOne">
+          <p class="site-author-name" itemprop="name">FsThatOne</p>
+          <p class="site-description motion-element" itemprop="description">莫非王土,莫非王臣.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开发RN的IDE一览"><span class="nav-number">1.</span> <span class="nav-text">开发RN的IDE一览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主流IDE"><span class="nav-number">1.1.</span> <span class="nav-text">主流IDE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nuclide"><span class="nav-number">1.1.1.</span> <span class="nav-text">Nuclide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sublime"><span class="nav-number">1.1.2.</span> <span class="nav-text">Sublime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebStorm"><span class="nav-number">1.1.3.</span> <span class="nav-text">WebStorm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非主流IDE"><span class="nav-number">1.2.</span> <span class="nav-text">非主流IDE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Studio-Code"><span class="nav-number">1.2.1.</span> <span class="nav-text">Visual Studio Code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的选择"><span class="nav-number">2.</span> <span class="nav-text">我的选择</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FsThatOne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

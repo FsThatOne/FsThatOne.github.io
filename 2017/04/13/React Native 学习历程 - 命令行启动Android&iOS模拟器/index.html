@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="iOS,Realm,">
+  <meta name="keywords" content="iOS,Swift,React Native,">
 
 
 
@@ -84,18 +84,21 @@
 
 
 
-<meta name="description" content="记录了Realm学习和使用过程中遇到的问题和解决办法.">
-<meta name="keywords" content="iOS,Realm">
+<meta name="description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述如何用Swift写一个命令行工具,一行命令启动安卓和iOS的模拟器">
+<meta name="keywords" content="iOS,Swift,React Native">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Realm爬坑心得">
-<meta property="og:url" content="http://FsThatOne.github.io/2016/06/07/Realm爬坑心得/index.html">
+<meta property="og:title" content="React Native 学习历程 - 命令行启动Android&amp;iOS模拟器">
+<meta property="og:url" content="http://FsThatOne.github.io/2017/04/13/React Native 学习历程 - 命令行启动Android&iOS模拟器/index.html">
 <meta property="og:site_name" content="ThatOne">
-<meta property="og:description" content="记录了Realm学习和使用过程中遇到的问题和解决办法.">
+<meta property="og:description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述如何用Swift写一个命令行工具,一行命令启动安卓和iOS的模拟器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-04-13T07:39:55.000Z">
+<meta property="og:image" content="http://fsthatone.github.io/2017/04/13/React%20Native%20学习历程%20-%20命令行启动Android&iOS模拟器/imgs/package_init.png">
+<meta property="og:image" content="http://fsthatone.github.io/2017/04/13/React%20Native%20学习历程%20-%20命令行启动Android&iOS模拟器/imgs/swift_build.png">
+<meta property="og:updated_time" content="2018-11-13T06:57:00.077Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Realm爬坑心得">
-<meta name="twitter:description" content="记录了Realm学习和使用过程中遇到的问题和解决办法.">
+<meta name="twitter:title" content="React Native 学习历程 - 命令行启动Android&amp;iOS模拟器">
+<meta name="twitter:description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述如何用Swift写一个命令行工具,一行命令启动安卓和iOS的模拟器">
+<meta name="twitter:image" content="http://fsthatone.github.io/2017/04/13/React%20Native%20学习历程%20-%20命令行启动Android&iOS模拟器/imgs/package_init.png">
 
 
 
@@ -116,9 +119,9 @@
 
 
 
-  <link rel="canonical" href="http://FsThatOne.github.io/2016/06/07/Realm爬坑心得/">
+  <link rel="canonical" href="http://FsThatOne.github.io/2017/04/13/React Native 学习历程 - 命令行启动Android&iOS模拟器/">
 
-  <title> Realm爬坑心得 | ThatOne </title>
+  <title> React Native 学习历程 - 命令行启动Android&iOS模拟器 | ThatOne </title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -228,7 +231,7 @@
             
             
               
-                Realm爬坑心得
+                React Native 学习历程 - 命令行启动Android&iOS模拟器
               
             
           </h1>
@@ -240,8 +243,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-07T17:45:18+08:00" content="2016-06-07">
-              2016-06-07
+            <time itemprop="dateCreated" datetime="2017-04-13T16:46:21+08:00" content="2017-04-13">
+              2017-04-13
             </time>
           </span>
 
@@ -268,14 +271,22 @@
       
 
       
-        <p><strong> 记录了Realm学习和使用过程中遇到的问题和解决办法. </strong><br><a id="more"></a></p>
+        <p><strong> 这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述如何用Swift写一个命令行工具,一行命令启动安卓和iOS的模拟器 </strong><br><a id="more"></a></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h1 id="写在最前边"><a href="#写在最前边" class="headerlink" title="写在最前边"></a>写在最前边</h1><p>当我新建这篇blog的时候,我的出发点是想记录一下在学习和使用Realm过程中遇到的一些问题及解决方案,但是时至今日,Realm已经用了一年了,这篇博客还是一直空着,也许是因为忙,也许是因为没有遇到过巨大的坑,所以一直没时间来更新,最近空闲下来了,慢慢把一些稍微大一些的坑填一下.</p>
-<p>项目一直在用OC开发,所以Swift版本的Realm一直没有尝试过,但后期肯定会使用,故先创建一个分类,后面补齐.</p>
-<h1 id="OC"><a href="#OC" class="headerlink" title="OC"></a>OC</h1><p>不废话了,直接上问题.</p>
-<h3 id="数据库迁移问题"><a href="#数据库迁移问题" class="headerlink" title="数据库迁移问题"></a>数据库迁移问题</h3><h4 id="1-变更主键"><a href="#1-变更主键" class="headerlink" title="1. 变更主键"></a>1. 变更主键</h4><p>由于最开始建库的时候没有想清楚后边的</p>
-<h1 id="Swift"><a href="#Swift" class="headerlink" title="Swift"></a>Swift</h1></the>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>由于本人是做iOS开发,对安卓的IDE及机制知之甚少,在做RN开发的时候,每次想要启动安卓模拟器的时候,都需要先打开Android Studio这个笨重的IDE,然后Run一下,甚是麻烦,因此,就想到了写一个CommandLineTool,一行命令启动安卓和iOS的模拟器,归根到底还是因为”懒”.</p>
+<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1><p>不废话了,开始搞:</p>
+<h3 id="You-need"><a href="#You-need" class="headerlink" title="You need:"></a>You need:</h3><ol>
+<li>Swift开发环境,不想多说,如果你是iOS开发者,那么你一定有Xcode,Xcode自带Swift开发环境;当然,如果你不是iOS开发者,又对Swift很感兴趣,那么你可以从<a href="https://swift.org/getting-started/" target="_blank" rel="external">这里</a>开始</li>
+<li>Swift 语法基础和一些iOS开发的经验.</li>
+<li>对Mac OS / Unix操作系统有一些简单的了解,以及会敲一些简单的终端命令.</li>
+</ol>
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action:"></a>Action:</h3><ol>
+<li>打开你的Terminal,cd到适当的目录下,键入<code>swift package init --type executable</code>,即使用<code>swift package manager</code>(后面简称SPM)初始化一个可执行的swift包.</li>
+<li>该命令会给我们生成一个可以运行的swift package,其中包括<code>Package.swift</code>,程序入口<code>main.swift</code>, <code>.gitignore</code>以及测试文件夹<code>Tests</code>.<br> <img src="./imgs/package_init.png" alt=""></li>
+<li>运行一下看看:首先,先<code>swift build</code>编译一下,该命令会给我们生成一个可执行文件,位置在<code>./.build/debug/test</code>,我们执行一下看看:<br> <img src="./imgs/swift_build.png" alt=""></li>
+</ol>
+</the>
       
     </div>
 
@@ -298,7 +309,9 @@
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/Realm/" rel="tag">#Realm</a>
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
           
         </div>
       
@@ -307,16 +320,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/06/移动数据库新选择-Realm/" rel="next" title="移动数据库新选择-Realm">
-                <i class="fa fa-chevron-left"></i> 移动数据库新选择-Realm
+              <a href="/2017/04/10/React Native 学习历程 - 小技巧/" rel="next" title="React Native 学习历程 - 小技巧">
+                <i class="fa fa-chevron-left"></i> React Native 学习历程 - 小技巧
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/02/iOS10推送及扩展/" rel="prev" title="iOS10通知及扩展">
-                iOS10通知及扩展 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/13/iOS理解isEqual与Hash/" rel="prev" title="iOS理解isEqual与Hash">
+                iOS理解isEqual与Hash <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -422,7 +435,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最前边"><span class="nav-number">1.</span> <span class="nav-text">写在最前边</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OC"><span class="nav-number">2.</span> <span class="nav-text">OC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库迁移问题"><span class="nav-number">2.0.1.</span> <span class="nav-text">数据库迁移问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-变更主键"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">1. 变更主键</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift"><span class="nav-number">3.</span> <span class="nav-text">Swift</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Why"><span class="nav-number">1.</span> <span class="nav-text">Why</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#You-need"><span class="nav-number">2.0.1.</span> <span class="nav-text">You need:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Action"><span class="nav-number">2.0.2.</span> <span class="nav-text">Action:</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

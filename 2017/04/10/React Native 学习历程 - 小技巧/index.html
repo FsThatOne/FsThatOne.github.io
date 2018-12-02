@@ -1,0 +1,576 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="iOS,React Native,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述学习React Native中遇到的一些小技巧,以及ES6的一些巧妙的语法">
+<meta name="keywords" content="iOS,React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native 学习历程 - 小技巧">
+<meta property="og:url" content="http://FsThatOne.github.io/2017/04/10/React Native 学习历程 - 小技巧/index.html">
+<meta property="og:site_name" content="ThatOne">
+<meta property="og:description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述学习React Native中遇到的一些小技巧,以及ES6的一些巧妙的语法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-13T06:57:05.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native 学习历程 - 小技巧">
+<meta name="twitter:description" content="这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述学习React Native中遇到的一些小技巧,以及ES6的一些巧妙的语法">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://FsThatOne.github.io/2017/04/10/React Native 学习历程 - 小技巧/">
+
+  <title> React Native 学习历程 - 小技巧 | ThatOne </title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ThatOne</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding Change the World.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Native 学习历程 - 小技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-10T09:46:21+08:00" content="2017-04-10">
+              2017-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> 这个系列记录了我正式开始学习React Native的历程与心得,以及一些踩过的坑,本篇将讲述学习React Native中遇到的一些小技巧,以及ES6的一些巧妙的语法 </strong><br><a id="more"></a></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h1 id="延展操作符-…"><a href="#延展操作符-…" class="headerlink" title="延展操作符(…)"></a>延展操作符(…)</h1><p>这个<code>...</code>操作符（也被叫做延展操作符 － spread operator）已经被ES6数组 支持。它允许传递数组或者类数组直接做为函数的参数而不用通过apply。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> people=[<span class="string">'Wayou'</span>,<span class="string">'John'</span>,<span class="string">'Sherlock'</span>];</span><br><span class="line"><span class="comment">//sayHello函数本来接收三个单独的参数人妖，人二和人三</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">people1,people2,people3</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;people1&#125;</span>,<span class="subst">$&#123;people2&#125;</span>,<span class="subst">$&#123;people3&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//但是我们将一个数组以拓展参数的形式传递，它能很好地映射到每个单独的参数</span></span><br><span class="line">sayHello(...people);<span class="comment">//输出：Hello Wayou,John,Sherlock </span></span><br><span class="line"><span class="comment">//而在以前，如果需要传递数组当参数，我们需要使用函数的apply方法</span></span><br><span class="line">sayHello.apply(<span class="literal">null</span>,people);<span class="comment">//输出：Hello Wayou,John,Sherlock</span></span><br></pre></td></tr></table></figure>
+<p>在React Native中:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">    <span class="keyword">var</span> params = &#123;name: <span class="string">'Lily'</span>, age: <span class="number">18</span>, sex: <span class="string">'man'</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;MyView &#123;...params&#125;/&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然,它也可以和普通的XML属性混合使用，需要同名属性，后者将覆盖前者：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> props = &#123; foo: <span class="string">'default'</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> component = &lt;Component &#123;...props&#125; foo=&#123;'override'&#125; /&gt;;</span><br><span class="line">console.log(component.props.foo); // 'override'</span><br></pre></td></tr></table></figure>
+<h1 id="export和export-default"><a href="#export和export-default" class="headerlink" title="export和export default"></a>export和export default</h1><p>当我们写完一个组件之后,为达到复用的目的,一般都会把它导出以提供给其他页面使用。<br>导出的关键字是:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span></span><br></pre></td></tr></table></figure>
+<p>没有加<code>default</code>时比如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Template</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>至于两者的区别,稍后再说,我们可以在单个js文件中恒明多个组件或者函数,比如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Template</span></span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AnotherTemplate</span></span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a,b</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在其他文件引用时，需要使用{}符号且组件名称必修和class名称一样，像这样子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Template,AnotherTemplate,sum&#125; <span class="keyword">from</span> <span class="string">'./components/Templates'</span>;</span><br></pre></td></tr></table></figure>
+<p>而加default时，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Template</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>其他文件引用时,可以不用加大括号:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Template <span class="keyword">from</span> <span class="string">'./components/Templates'</span>;</span><br></pre></td></tr></table></figure>
+<p>当然,我们也可以给他起个别名,以方便使用:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ThatOne <span class="keyword">from</span> <span class="string">'./components/Templates'</span>;</span><br></pre></td></tr></table></figure>
+<p>PS:<font size="4" color="#464686"> <strong><em>每个文件中只能有一个default导出,可以有多个非默认导出</em></strong> </font><br>导出多个组件或者方法时:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Template,&#123;AnotherTemplate, sum&#125; <span class="keyword">from</span> <span class="string">'./components/Templates'</span>;</span><br></pre></td></tr></table></figure>
+<p>当然还有一种写法:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> exportObject <span class="keyword">from</span> <span class="string">'./components/Templates'</span>;</span><br></pre></td></tr></table></figure>
+<p>这种写法是把Templates中的所有(无论是否default)export的属性、组件、方法组成一个对象,这个对象拥有所有导出的属性、方法、组件,使用时直接<code>exportObject.xxx</code>就好了.</p>
+</the>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/01/React Native 学习历程 - 环境搭建/" rel="next" title="React Native 学习历程 - 环境搭建">
+                <i class="fa fa-chevron-left"></i> React Native 学习历程 - 环境搭建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/13/React Native 学习历程 - 命令行启动Android&iOS模拟器/" rel="prev" title="React Native 学习历程 - 命令行启动Android&iOS模拟器">
+                React Native 学习历程 - 命令行启动Android&iOS模拟器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="FsThatOne">
+          <p class="site-author-name" itemprop="name">FsThatOne</p>
+          <p class="site-description motion-element" itemprop="description">莫非王土,莫非王臣.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延展操作符-…"><span class="nav-number">1.</span> <span class="nav-text">延展操作符(…)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#export和export-default"><span class="nav-number">2.</span> <span class="nav-text">export和export default</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FsThatOne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
